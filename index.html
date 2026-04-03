@@ -1,726 +1,437 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Between — Feel Each Other. A private emotional &amp; safety network for close friends and loved ones. Live presence, mood sync, silent SOS, heartbeat haptics &amp; emergency intelligence.">
-    <title>Between • Feel Each Other</title>
-    <!-- Google Fonts: Sora (headings) + DM Sans (body) -->
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&amp;family=Sora:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&amp;family=Sora:wght@400;500;600;700&amp;display=swap');
-        
-        :root {
-            --magenta: #D81B60;
-            --rose: #F48FB1;
-            --indigo: #8C77F5;
-            --dark-indigo: #1A237E;
-            --navy: #0A0E1A;
-        }
-        
-        * {
-            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-            transition-duration: 150ms;
-        }
-        
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Between — The Ethereal Pulse</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#0f131f",
+                    "on-secondary-container": "#ffdce0",
+                    "surface-container-low": "#171b28",
+                    "on-background": "#dfe2f3",
+                    "on-tertiary-fixed": "#3e001e",
+                    "surface-container-highest": "#313442",
+                    "surface-container": "#1b1f2c",
+                    "outline": "#938e9f",
+                    "tertiary": "#ffb0c9",
+                    "on-secondary-fixed": "#3f0016",
+                    "error-container": "#93000a",
+                    "tertiary-fixed": "#ffd9e2",
+                    "on-tertiary-container": "#530b2c",
+                    "primary": "#c9beff",
+                    "on-surface-variant": "#c9c4d5",
+                    "on-secondary-fixed-variant": "#90003b",
+                    "on-primary-fixed": "#1b0062",
+                    "tertiary-fixed-dim": "#ffb0c9",
+                    "surface-dim": "#0f131f",
+                    "on-primary": "#300796",
+                    "secondary-fixed": "#ffd9e2",
+                    "surface": "#0f131f",
+                    "on-surface": "#dfe2f3",
+                    "outline-variant": "#484553",
+                    "surface-variant": "#313442",
+                    "primary-container": "#937efc",
+                    "surface-tint": "#c9beff",
+                    "inverse-primary": "#6049c5",
+                    "on-error": "#690005",
+                    "tertiary-container": "#d27394",
+                    "error": "#ffb4ab",
+                    "secondary-container": "#c90456",
+                    "surface-container-high": "#262a37",
+                    "inverse-on-surface": "#2c303d",
+                    "on-secondary": "#660028",
+                    "on-primary-container": "#290089",
+                    "inverse-surface": "#dfe2f3",
+                    "secondary-fixed-dim": "#ffb2bf",
+                    "secondary": "#ffb2bf",
+                    "primary-fixed-dim": "#c9beff",
+                    "surface-bright": "#353946",
+                    "on-tertiary": "#5c1333"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
         body {
-            font-family: 'DM Sans', system-ui, sans-serif;
+            background-color: #0f131f;
+            color: #dfe2f3;
+            scroll-behavior: smooth;
         }
-        
-        .heading-font {
-            font-family: 'Sora', sans-serif;
+        .glow-orb {
+            filter: blur(120px);
+            pointer-events: none;
+            z-index: 0;
         }
-
-        .hero-bg {
-            background: radial-gradient(circle at 30% 20%, #8C77F5 0%, #D81B60 30%, #0A0E1A 70%);
+        .glass-panel {
+            background: rgba(49, 52, 66, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
         }
-
-        .glass {
-            background: rgba(255,255,255,0.08);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-        }
-
-        .pulse-heart {
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-        }
-
-        .gradient-text {
-            background: linear-gradient(90deg, #D81B60, #8C77F5, #F48FB1);
+        .text-gradient {
+            background: linear-gradient(135deg, #c9beff 0%, #ffb2bf 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
-        .section-header {
-            position: relative;
+        .btn-gradient {
+            background: linear-gradient(135deg, #937efc 0%, #c90456 100%);
         }
-        
-        .section-header::after {
-            content: '';
-            position: absolute;
-            width: 64px;
-            height: 3px;
-            background: linear-gradient(to right, #D81B60, #8C77F5);
-            bottom: -8px;
-            left: 0;
-            border-radius: 9999px;
-        }
-
-        .map-bg {
-            background: linear-gradient(135deg, #0A0E1A 0%, #1A237E 100%);
-            box-shadow: inset 0 0 80px rgba(140, 119, 245, 0.3);
-        }
-
-        .feature-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 25px 50px -12px rgb(216 27 96);
-        }
-
-        .nav-link {
-            position: relative;
-        }
-        
-        .nav-link:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: #D81B60;
-        }
-        
-        .nav-link:hover:after {
-            width: 100%;
-        }
-
-        .heartbeat-line {
-            animation: heartbeat 1.5s ease-in-out infinite;
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
     </style>
 </head>
-<body class="bg-[#0A0E1A] text-white overflow-x-hidden">
-    <!-- NAVBAR -->
-    <nav class="sticky top-0 z-50 glass border-b border-white/10">
-        <div class="max-w-screen-2xl mx-auto px-8 py-5 flex items-center justify-between">
-            <!-- Logo -->
-            <div class="flex items-center gap-x-3">
-                <div class="w-9 h-9 rounded-2xl bg-gradient-to-br from-[#D81B60] to-[#8C77F5] flex items-center justify-center shadow-lg shadow-[#D81B60]/50">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white pulse-heart" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 13l-5 5m0 0l-5-5m5 5V6" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21a9 9 0 01-9-9V6a9 9 0 0118 0v6a9 9 0 01-9 9z" />
-                    </svg>
-                </div>
-                <div class="heading-font text-3xl font-semibold tracking-[-1px] gradient-text">Between</div>
-                <span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-white/10 text-[#F48FB1] border border-[#F48FB1]/30">Beta</span>
-            </div>
-
-            <!-- Menu -->
-            <div class="hidden md:flex items-center gap-x-9 text-sm font-medium">
-                <a href="#features" class="nav-link">Features</a>
-                <a href="#how" class="nav-link">How it Works</a>
-                <a href="#safety" class="nav-link">Safety</a>
-                <a href="#smartwatch" class="nav-link">Smartwatch</a>
-                <a href="#inner-circle" class="nav-link">Inner Circle</a>
-                <a href="#privacy" class="nav-link">Privacy</a>
-            </div>
-
-            <div class="flex items-center gap-x-4">
-                <a href="https://gamma.app/docs/Between-Feel-Each-Other-ofvti0lrvk328aj" 
-                   target="_blank"
-                   class="px-5 py-2.5 text-sm font-medium rounded-3xl border border-white/30 hover:border-white/70 flex items-center gap-x-2">
-                    <span>Pitch Deck</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L9 15" />
-                    </svg>
+<body class="font-body selection:bg-primary/30">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/60 dark:bg-[#0f131f]/60 backdrop-blur-xl shadow-2xl shadow-[#8C77F5]/5 font-['Plus_Jakarta_Sans'] tracking-tight antialiased">
+<nav class="flex justify-between items-center px-8 h-20 max-w-full mx-auto">
+<div class="text-2xl font-bold tracking-tighter text-[#c9beff]">Between</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-slate-400 hover:text-white transition-colors" href="#features">Features</a>
+<a class="text-slate-400 hover:text-white transition-colors" href="#safety">Safety</a>
+<a class="text-slate-400 hover:text-white transition-colors" href="#privacy">Privacy</a>
+<a class="text-slate-400 hover:text-white transition-colors" href="#download">Download</a>
+</div>
+<div class="flex items-center gap-4">
+<a class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-bold hover:opacity-80 transition-all active:scale-95" href="#join">
+                    Get Started
                 </a>
-                
-                <button onclick="showWaitlistModal()"
-                        class="px-7 py-2.5 bg-[#D81B60] hover:bg-[#C01855] rounded-3xl font-medium flex items-center gap-x-2 text-sm">
-                    <span>Join Beta</span>
-                    <span class="text-xs bg-white/20 px-2 py-px rounded-full">Free for first 10K</span>
-                </button>
-
-                <!-- Mobile menu button -->
-                <button onclick="toggleMobileMenu()" class="md:hidden w-10 h-10 flex items-center justify-center">
-                    <svg id="mobile-icon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden glass border-t border-white/10 px-8 py-6">
-            <div class="flex flex-col gap-y-6 text-sm font-medium">
-                <a href="#features" onclick="toggleMobileMenu()" class="py-2">Features</a>
-                <a href="#how" onclick="toggleMobileMenu()" class="py-2">How it Works</a>
-                <a href="#safety" onclick="toggleMobileMenu()" class="py-2">Safety</a>
-                <a href="#smartwatch" onclick="toggleMobileMenu()" class="py-2">Smartwatch</a>
-                <a href="#inner-circle" onclick="toggleMobileMenu()" class="py-2">Inner Circle</a>
-                <a href="#privacy" onclick="toggleMobileMenu()" class="py-2">Privacy</a>
-                <div class="pt-4 border-t border-white/10">
-                    <button onclick="showWaitlistModal();toggleMobileMenu()" 
-                            class="w-full py-4 bg-[#D81B60] rounded-3xl text-white font-medium">Join the Beta — Feel Each Other</button>
+</div>
+</nav>
+</header>
+<main class="relative overflow-hidden">
+<!-- Background Glows -->
+<div class="fixed top-[-10%] left-[-10%] w-[50%] h-[50%] glow-orb bg-primary/10 rounded-full"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[50%] h-[50%] glow-orb bg-secondary-container/10 rounded-full"></div>
+<!-- Hero Section -->
+<section class="min-h-screen flex flex-col items-center justify-center pt-32 pb-20 px-6 relative z-10">
+<div class="max-w-4xl text-center space-y-8">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium tracking-wide mb-4">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                    Ethereal Beta Now Live
                 </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- HERO -->
-    <header class="hero-bg min-h-screen flex items-center relative">
-        <div class="max-w-screen-2xl mx-auto px-8 grid md:grid-cols-12 gap-12 items-center">
-            <!-- Left content -->
-            <div class="md:col-span-7 pt-20 md:pt-0">
-                <div class="inline-flex items-center gap-x-2 px-4 py-2 rounded-3xl glass mb-6 text-sm font-medium border border-[#F48FB1]/30">
-                    <div class="w-2 h-2 bg-[#F48FB1] rounded-full animate-pulse"></div>
-                    NOW IN CLOSED BETA • Hyderabad &amp; Bangalore
-                </div>
-
-                <h1 class="heading-font text-7xl md:text-8xl leading-none font-semibold tracking-[-3px] mb-6">
-                    Feel Each<br>Other.
-                </h1>
-                
-                <p class="text-2xl md:text-3xl text-white/90 max-w-lg mb-8">
-                    A private emotional &amp; safety network.<br>
-                    No constant texting. Just presence, mood, and heartbeat sync.
+<h1 class="text-5xl md:text-8xl font-headline font-extrabold tracking-tighter text-on-surface leading-[1.1]">
+                    Feel each other, <br/>
+<span class="text-gradient">even in silence.</span>
+</h1>
+<p class="text-xl md:text-2xl text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
+                    The world's first Emotional Presence Platform. Connect deeper through bio-resonance and ambient digital intimacy.
                 </p>
-
-                <div class="flex flex-wrap gap-4 mb-12">
-                    <button onclick="showWaitlistModal()" 
-                            class="px-8 py-5 bg-white text-[#0A0E1A] rounded-3xl text-lg font-semibold flex items-center gap-x-3 hover:scale-105">
-                        <span>Join Beta for Free</span>
-                        <span class="text-[#D81B60]">→</span>
-                    </button>
-                    
-                    <a href="#features" 
-                       class="px-8 py-5 border-2 border-white/70 hover:border-white rounded-3xl text-lg font-medium flex items-center">
-                        Watch 47-second demo
+<div class="flex flex-col sm:flex-row gap-6 justify-center pt-8">
+<a class="btn-gradient px-10 py-5 rounded-full text-lg font-bold text-white shadow-xl shadow-primary/20 hover:scale-105 transition-transform" href="#join">
+                        Get Started
                     </a>
-                </div>
-
-                <div class="flex items-center gap-x-8 text-sm">
-                    <div class="flex -space-x-4">
-                        <div class="w-8 h-8 rounded-2xl bg-[#D81B60] flex items-center justify-center ring-2 ring-[#0A0E1A]">❤️</div>
-                        <div class="w-8 h-8 rounded-2xl bg-[#8C77F5] flex items-center justify-center ring-2 ring-[#0A0E1A]">👫</div>
-                        <div class="w-8 h-8 rounded-2xl bg-[#F48FB1] flex items-center justify-center ring-2 ring-[#0A0E1A]">🛟</div>
+<button class="glass-panel px-10 py-5 rounded-full text-lg font-bold text-on-surface border border-outline-variant/30 hover:bg-surface-container-highest transition-colors flex items-center gap-3">
+<span class="material-symbols-outlined">play_circle</span>
+                        Watch Demo
+                    </button>
+</div>
+</div>
+<!-- Central Core Visual -->
+<div class="mt-24 relative w-full max-w-lg aspect-square flex items-center justify-center">
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/30 to-secondary-container/30 rounded-full blur-[80px] animate-pulse"></div>
+<div class="relative w-64 h-64 glass-panel rounded-full border border-white/10 flex items-center justify-center shadow-inner overflow-hidden">
+<div class="absolute inset-4 bg-primary/20 rounded-full blur-xl"></div>
+<span class="material-symbols-outlined text-7xl text-gradient scale-110" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+<!-- Orbiting Elements -->
+<div class="absolute top-0 left-10 w-16 h-16 glass-panel rounded-2xl border border-white/5 flex items-center justify-center rotate-12">
+<span class="material-symbols-outlined text-primary">sensors</span>
+</div>
+<div class="absolute bottom-10 right-0 w-20 h-20 glass-panel rounded-full border border-white/5 flex items-center justify-center -rotate-12">
+<span class="material-symbols-outlined text-secondary">wifi_tethering</span>
+</div>
+</div>
+</section>
+<!-- Live Presence (Demo) -->
+<section class="py-32 px-6 relative bg-surface-container-low" id="features">
+<div class="max-w-7xl mx-auto">
+<div class="grid lg:grid-cols-2 gap-20 items-center">
+<div class="space-y-6">
+<h2 class="text-4xl md:text-6xl font-headline font-bold text-on-surface tracking-tight">
+                            Live Presence. <br/>Shared Souls.
+                        </h2>
+<p class="text-lg text-on-surface-variant leading-relaxed">
+                            Aura Mode visualizes the distance and emotional state of your inner circle. Feel their heartbeat as a subtle haptic pulse on your wrist, or see their digital aura glow when they're thinking of you.
+                        </p>
+<ul class="space-y-4 pt-6">
+<li class="flex items-center gap-4 text-on-surface">
+<span class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary material-symbols-outlined">radar</span>
+                                Real-time proximity bio-sensing
+                            </li>
+<li class="flex items-center gap-4 text-on-surface">
+<span class="w-10 h-10 rounded-full bg-secondary-container/10 flex items-center justify-center text-secondary-container material-symbols-outlined">flare</span>
+                                Emotional aura synchronization
+                            </li>
+</ul>
+<div class="pt-10">
+<button class="bg-surface-container-highest px-8 py-4 rounded-xl font-bold border border-outline-variant/20 hover:border-primary/50 transition-all">
+                                Explore Aura Mode
+                            </button>
+</div>
+</div>
+<!-- Interactive Map Visualization -->
+<div class="relative aspect-square glass-panel rounded-xl border border-outline-variant/10 overflow-hidden group">
+<img alt="Dark abstract map texture" class="absolute inset-0 w-full h-full object-cover opacity-30 grayscale mix-blend-overlay" data-alt="Abstract aerial dark map view with subtle neon city lights and geometric grid overlays in deep navy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIBx9BxjXUIVJ2T-zobPGQIbtubWRgBl7hQRSrLpvSc3Ky1u2m252Nh4qmsaYeMFFuUagHItDXxkyyeOOVx0yWWXnq38KdkpmDImjIm1PEEDvRjyUELIcOFVIGb-q_n-jeU8rwOmPhUl6Rwf-Si8k0hSrfbljgzMV3zLr81DxP7KYe7z9FLvJrHAS_dOdr1ET2WVz2v6Qty3LCJzFfcIFLBphXbss-jn1eapzWFUMB7eHJ9WDdbTbTxJpedPvpuEFqGhwXyEDZHTy9"/>
+<div class="absolute inset-0 p-12">
+<!-- Avatar 1 -->
+<div class="absolute top-1/4 left-1/4 group/avatar cursor-pointer">
+<div class="w-20 h-20 rounded-full border-4 border-primary bg-surface shadow-[0_0_30px_rgba(147,126,252,0.4)] overflow-hidden transition-transform hover:scale-110">
+<img class="w-full h-full object-cover" data-alt="Portrait of a young woman with neon ambient lighting on her face in a dark studio setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBw6UAdGbRih-EnFGLi8qAilQV1k8lCwNubpqDRtJXW_sBMyd_rteVrQQl1l5ktV0eOsTl6dKGIiIRgRfiIXuQDpP05z53qAGAmCwRfB84g0qgEysTH57cHaea5oAcLsxFJxsvpqyvIzF_OXyE8gwV3QNtInM-pHTU1DlXIfWuuDYf-phJW_D4snBUxTTFE5qa3nFMDVEs1ijZ1rollaZ5C5dNCYGO2bd6Y1AA4fT7Pv3OdYjbOU3PKlvkOyJTx6VE4m5nG05FZm1S"/>
+</div>
+<div class="absolute top-full mt-4 left-1/2 -translate-x-1/2 glass-panel px-4 py-2 rounded-lg opacity-0 group-hover/avatar:opacity-100 transition-opacity whitespace-nowrap">
+<p class="text-xs font-bold text-primary">CHLOE • CALM</p>
+<p class="text-[10px] text-on-surface-variant">2.4km away • Thinking of you</p>
+</div>
+</div>
+<!-- Avatar 2 -->
+<div class="absolute bottom-1/3 right-1/4 group/avatar2 cursor-pointer">
+<div class="w-16 h-16 rounded-full border-4 border-secondary-container bg-surface shadow-[0_0_30px_rgba(201,4,86,0.4)] overflow-hidden transition-transform hover:scale-110">
+<img class="w-full h-full object-cover" data-alt="Portrait of a smiling young man in a modern urban night setting with soft bokeh lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJhzMGkBj-ClH92SouWqapAsIwWeWtTAMCp29_u_yKPmM-mRM92wpQMTDbiUYOrAtBuXB6dKLh2I5LsK73HP1VXri06UlaDkxbsh9ISNFiBUnMV9lzcK9EdN3LaBEyo9miMvvht0fNfCK3NDmtJqrt6L426XKEh6auNXhr1IdWpLMni8xeLPXiaKz2S0yJa4_R1_yCm1oM1LFdNxBPe721aREH3vsuYS73dY1JnfnmZdeI6xtz8S1vjc_8Ex0x1Zmrn-ONB_OwOdOH"/>
+</div>
+<div class="absolute top-full mt-4 left-1/2 -translate-x-1/2 glass-panel px-4 py-2 rounded-lg opacity-0 group-hover/avatar2:opacity-100 transition-opacity whitespace-nowrap">
+<p class="text-xs font-bold text-secondary-container">MARCUS • ENERGIZED</p>
+<p class="text-[10px] text-on-surface-variant">120m away • Active now</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- The Emotion Engine -->
+<section class="py-32 px-6 relative transition-colors duration-700" id="engine-bg">
+<div class="max-w-4xl mx-auto text-center space-y-12">
+<h2 class="text-4xl md:text-6xl font-headline font-bold text-on-surface tracking-tight">The Emotion Engine</h2>
+<p class="text-lg text-on-surface-variant">Click a mood to shift your digital presence and let your circle feel your frequency.</p>
+<div class="flex flex-wrap justify-center gap-8 py-10">
+<button class="group flex flex-col items-center gap-4" onclick="document.getElementById('engine-bg').style.background = 'radial-gradient(circle, rgba(147,126,252,0.1) 0%, transparent 70%)'">
+<div class="w-24 h-24 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center shadow-[0_0_40px_rgba(147,126,252,0.2)] group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl text-primary">sentiment_very_satisfied</span>
+</div>
+<span class="text-sm font-label uppercase tracking-widest text-primary">Happy</span>
+</button>
+<button class="group flex flex-col items-center gap-4" onclick="document.getElementById('engine-bg').style.background = 'radial-gradient(circle, rgba(201,190,255,0.1) 0%, transparent 70%)'">
+<div class="w-24 h-24 rounded-full bg-on-surface-variant/10 border border-on-surface-variant/30 flex items-center justify-center shadow-[0_0_40px_rgba(201,190,255,0.1)] group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant">self_improvement</span>
+</div>
+<span class="text-sm font-label uppercase tracking-widest text-on-surface-variant">Calm</span>
+</button>
+<button class="group flex flex-col items-center gap-4" onclick="document.getElementById('engine-bg').style.background = 'radial-gradient(circle, rgba(201,4,86,0.1) 0%, transparent 70%)'">
+<div class="w-24 h-24 rounded-full bg-secondary-container/20 border border-secondary-container/40 flex items-center justify-center shadow-[0_0_40px_rgba(201,4,86,0.2)] group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl text-secondary-container">mood_bad</span>
+</div>
+<span class="text-sm font-label uppercase tracking-widest text-secondary-container">Melancholy</span>
+</button>
+<button class="group flex flex-col items-center gap-4" onclick="document.getElementById('engine-bg').style.background = 'radial-gradient(circle, rgba(255,176,201,0.1) 0%, transparent 70%)'">
+<div class="w-24 h-24 rounded-full bg-tertiary/20 border border-tertiary/40 flex items-center justify-center shadow-[0_0_40px_rgba(255,176,201,0.2)] group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl text-tertiary">favorite</span>
+</div>
+<span class="text-sm font-label uppercase tracking-widest text-tertiary">Loving</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Smartwatch Emergency -->
+<section class="py-32 px-6 relative bg-surface-container-highest/30 overflow-hidden" id="safety">
+<div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+<div class="relative order-2 lg:order-1 flex justify-center">
+<!-- Smartwatch Mockup -->
+<div class="relative w-72 h-80 bg-black rounded-[4rem] border-[8px] border-zinc-800 shadow-2xl p-6 transition-all duration-300" id="watch-container">
+<div class="absolute inset-0 bg-gradient-to-br from-zinc-700/20 to-transparent rounded-[3.5rem] pointer-events-none"></div>
+<div class="h-full w-full bg-[#0a0e1a] rounded-[2.5rem] flex flex-col items-center justify-center text-center p-4 overflow-hidden relative" id="watch-screen">
+<!-- Watch UI Default -->
+<div class="space-y-4" id="watch-ui-default">
+<div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-2">
+<span class="material-symbols-outlined text-primary">notifications_active</span>
+</div>
+<p class="text-xs font-bold text-on-surface tracking-widest uppercase">Emergency Hub</p>
+<button class="w-full py-4 bg-secondary-container text-white rounded-2xl font-black text-sm hover:scale-105 transition-transform active:scale-95" onclick="triggerSOS()">
+                                    TRIGGER SOS
+                                </button>
+<p class="text-[10px] text-on-surface-variant">Notifies entire inner circle instantly</p>
+</div>
+<!-- SOS Confirmation State -->
+<div class="hidden space-y-4" id="watch-ui-confirm">
+<p class="text-xs font-bold text-error tracking-widest uppercase">Cancelling in...</p>
+<div class="text-4xl font-black text-on-surface" id="countdown-timer">10</div>
+<button class="w-full py-2 border border-outline-variant/30 text-on-surface rounded-xl text-xs" onclick="cancelSOS()">
+                                    CANCEL
+                                </button>
+</div>
+<!-- Active Pulse State -->
+<div class="hidden absolute inset-0 bg-red-900/40 flex flex-col items-center justify-center animate-pulse" id="watch-ui-active">
+<span class="material-symbols-outlined text-5xl text-error mb-2">emergency</span>
+<p class="text-sm font-black text-white">ALERT SENT</p>
+<p class="text-[10px] text-white/80">Help is on the way</p>
+</div>
+</div>
+</div>
+</div>
+<div class="order-1 lg:order-2 space-y-8">
+<h2 class="text-4xl md:text-6xl font-headline font-bold text-on-surface tracking-tight">Guardian at Your Wrist</h2>
+<p class="text-lg text-on-surface-variant leading-relaxed">
+                        In critical moments, silence speaks loudest. Trigger an SOS from your smartwatch to instantly share your exact live location and bio-vitals with your trusted circle. No words needed.
+                    </p>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-6 glass-panel rounded-xl border border-outline-variant/10">
+<span class="material-symbols-outlined text-primary mb-2">share_location</span>
+<h4 class="font-bold text-on-surface mb-1">Live Location</h4>
+<p class="text-sm text-on-surface-variant">Continuous GPS tracking during alert</p>
+</div>
+<div class="p-6 glass-panel rounded-xl border border-outline-variant/10">
+<span class="material-symbols-outlined text-secondary mb-2">monitor_heart</span>
+<h4 class="font-bold text-on-surface mb-1">Vital Feeds</h4>
+<p class="text-sm text-on-surface-variant">Share heart rate &amp; breath levels</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Privacy & Control -->
+<section class="py-32 px-6" id="privacy">
+<div class="max-w-7xl mx-auto">
+<div class="text-center max-w-2xl mx-auto mb-20">
+<h2 class="text-4xl md:text-5xl font-headline font-bold text-on-surface tracking-tight mb-6">You control the Pulse.</h2>
+<p class="text-on-surface-variant">We designed Between with privacy as its nervous system. Decide exactly who sees you, and when.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="glass-panel p-10 rounded-[2rem] border border-outline-variant/10 space-y-6 hover:bg-surface-container-high/50 transition-colors group">
+<div class="flex justify-between items-center">
+<span class="material-symbols-outlined text-3xl text-primary">my_location</span>
+<div class="w-12 h-6 bg-surface-container-highest rounded-full p-1 cursor-pointer relative" onclick="this.querySelector('div').classList.toggle('translate-x-6'); this.classList.toggle('bg-primary')">
+<div class="w-4 h-4 bg-white rounded-full transition-transform"></div>
+</div>
+</div>
+<h3 class="text-xl font-bold text-on-surface">Exact Location</h3>
+<p class="text-on-surface-variant text-sm">Toggle between high-precision GPS or neighborhood-level 'Ghost' mode.</p>
+</div>
+<div class="glass-panel p-10 rounded-[2rem] border border-outline-variant/10 space-y-6 hover:bg-surface-container-high/50 transition-colors group">
+<div class="flex justify-between items-center">
+<span class="material-symbols-outlined text-3xl text-secondary">flare</span>
+<div class="w-12 h-6 bg-primary rounded-full p-1 cursor-pointer relative" onclick="this.querySelector('div').classList.toggle('translate-x-6'); this.classList.toggle('bg-surface-container-highest'); this.classList.toggle('bg-primary')">
+<div class="w-4 h-4 bg-white rounded-full transition-transform translate-x-6"></div>
+</div>
+</div>
+<h3 class="text-xl font-bold text-on-surface">Aura Mode</h3>
+<p class="text-on-surface-variant text-sm">Allow friends to see your emotional state visualized as a soft digital glow.</p>
+</div>
+<div class="glass-panel p-10 rounded-[2rem] border border-outline-variant/10 space-y-6 hover:bg-surface-container-high/50 transition-colors group">
+<div class="flex justify-between items-center">
+<span class="material-symbols-outlined text-3xl text-tertiary">visibility</span>
+<div class="w-12 h-6 bg-primary rounded-full p-1 cursor-pointer relative" onclick="this.querySelector('div').classList.toggle('translate-x-6'); this.classList.toggle('bg-surface-container-highest'); this.classList.toggle('bg-primary')">
+<div class="w-4 h-4 bg-white rounded-full transition-transform translate-x-6"></div>
+</div>
+</div>
+<h3 class="text-xl font-bold text-on-surface">Mood Visibility</h3>
+<p class="text-on-surface-variant text-sm">Choose which emotions are shared with specific people in your circle.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Join the Circle (CTA) -->
+<section class="py-32 px-6 relative" id="join">
+<div class="max-w-5xl mx-auto glass-panel p-12 md:p-24 rounded-[3rem] border border-primary/20 text-center relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 blur-3xl rounded-full"></div>
+<div class="relative z-10 space-y-10">
+<h2 class="text-4xl md:text-6xl font-headline font-bold text-on-surface tracking-tight">Join the Ethereal Pulse.</h2>
+<p class="text-xl text-on-surface-variant max-w-xl mx-auto">Be the first to experience the future of intimacy. Our initial circle is growing fast.</p>
+<form class="flex flex-col md:flex-row gap-4 max-w-md mx-auto" id="waitlist-form" onsubmit="event.preventDefault(); showSuccess()">
+<input class="flex-grow bg-surface-container-lowest border border-outline-variant/30 rounded-full px-6 py-4 text-on-surface focus:outline-none focus:border-primary/50 transition-all placeholder:text-on-surface-variant/50" placeholder="Enter your email" required="" type="email"/>
+<button class="btn-gradient px-8 py-4 rounded-full font-bold text-white whitespace-nowrap hover:scale-105 transition-transform active:scale-95" type="submit">
+                            Join Waitlist
+                        </button>
+</form>
+<div class="hidden text-primary font-bold animate-bounce pt-4" id="success-msg">
+                        Welcome to the circle. Check your inbox.
                     </div>
-                    <div>
-                        <p class="font-medium">Trusted by early circles in 3 cities</p>
-                        <p class="text-white/60">1,847 people already feeling each other</p>
-                    </div>
-                    
-                    <div class="h-10 border-l border-white/20"></div>
-                    
-                    <div class="flex items-center gap-x-1 text-[#F48FB1]">
-                        <span class="text-4xl">★</span>
-                        <span class="text-4xl">★</span>
-                        <span class="text-4xl">★</span>
-                        <span class="text-4xl">★</span>
-                        <span class="text-4xl">★</span>
-                        <span class="ml-2 text-white/80">“I finally feel her even when we’re silent”</span>
-                    </div>
-                </div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0f131f] dark:bg-[#0f131f] w-full py-12 border-t border-[#c9beff]/10">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 gap-8 font-['Plus_Jakarta_Sans'] text-sm uppercase tracking-widest">
+<div class="text-lg font-black text-[#c9beff] opacity-50">Between</div>
+<div class="flex gap-8 text-slate-500">
+<a class="hover:text-[#c9beff] hover:translate-y-[-2px] transition-all" href="#">Privacy</a>
+<a class="hover:text-[#c9beff] hover:translate-y-[-2px] transition-all" href="#">Terms</a>
+<a class="hover:text-[#c9beff] hover:translate-y-[-2px] transition-all" href="#">Twitter</a>
+<a class="hover:text-[#c9beff] hover:translate-y-[-2px] transition-all" href="#">Instagram</a>
+</div>
+<div class="text-slate-500 lowercase tracking-normal">
+                © 2024 Between. The Ethereal Pulse.
+            </div>
+</div>
+</footer>
+<script>
+        // SOS Interactive Logic
+        let timer;
+        let countdown = 10;
 
-                <!-- Trust badges -->
-                <div class="mt-16 flex flex-wrap items-center gap-x-8 text-xs opacity-70">
-                    <div class="flex items-center gap-x-1">
-                        <span>Flutter</span>
-                        <span class="text-[#8C77F5]">•</span>
-                        <span>Wear OS + watchOS</span>
-                    </div>
-                    <div>Firebase • Google Maps</div>
-                    <div class="flex items-center">End-to-end encrypted</div>
-                    <div>DPDP Act 2023 compliant</div>
-                    <div class="text-emerald-400">No ads. Ever.</div>
-                </div>
-            </div>
-
-            <!-- Right visual -->
-            <div class="md:col-span-5 relative">
-                <div class="map-bg rounded-3xl p-4 shadow-2xl shadow-[#D81B60]/30 border border-white/10">
-                    <div class="bg-[#0A0E1A] rounded-2xl p-6 relative overflow-hidden">
-                        <!-- Fake map -->
-                        <div class="h-96 rounded-2xl relative flex items-center justify-center">
-                            <!-- Background grid lines -->
-                            <div class="absolute inset-0 opacity-10" style="background: linear-gradient(#8C77F5 1px, transparent 1px), linear-gradient(90deg, #8C77F5 1px, transparent 1px); background-size: 40px 40px;"></div>
-                            
-                            <!-- Avatars on map -->
-                            <div class="absolute top-1/3 left-1/4 w-12 h-12 bg-gradient-to-br from-[#F48FB1] to-[#D81B60] rounded-2xl flex items-center justify-center text-2xl shadow-xl ring-4 ring-white/30">👩🏻‍❤️‍💋‍👨🏻</div>
-                            <div class="absolute top-2/3 right-1/3 w-12 h-12 bg-gradient-to-br from-[#8C77F5] to-[#F48FB1] rounded-2xl flex items-center justify-center text-2xl shadow-xl ring-4 ring-white/30">👨🏻</div>
-                            
-                            <!-- Pulsing connection lines -->
-                            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 400 400">
-                                <line x1="110" y1="140" x2="280" y2="260" stroke="#F48FB1" stroke-width="3" stroke-dasharray="8 12" class="heartbeat-line" />
-                                <circle cx="110" cy="140" r="8" fill="#D81B60" />
-                                <circle cx="280" cy="260" r="8" fill="#8C77F5" />
-                            </svg>
-                            
-                            <!-- Mood orbs -->
-                            <div class="absolute bottom-12 left-12 glass rounded-3xl px-5 py-2 flex items-center gap-x-4 text-xs">
-                                <div class="flex items-center gap-x-1">
-                                    <div class="w-3 h-3 rounded-full bg-[#D81B60]"></div>
-                                    <span>Calm</span>
-                                </div>
-                                <div class="flex items-center gap-x-1">
-                                    <div class="w-3 h-3 rounded-full bg-[#8C77F5]"></div>
-                                    <span>Stressed</span>
-                                </div>
-                                <div class="flex items-center gap-x-1">
-                                    <div class="w-3 h-3 rounded-full bg-[#F48FB1]"></div>
-                                    <span>Thinking of you</span>
-                                </div>
-                            </div>
-                            
-                            <!-- Heartbeat sync badge -->
-                            <div class="absolute top-8 right-8 glass px-6 py-3 rounded-3xl text-center">
-                                <div class="text-[#D81B60] text-xs font-medium tracking-widest mb-1">HEARTBEAT SYNC ACTIVE</div>
-                                <div class="flex justify-center gap-x-1">
-                                    <div class="w-4 h-8 bg-gradient-to-t from-transparent via-[#D81B60] to-transparent rounded-full pulse-heart"></div>
-                                    <div class="w-4 h-8 bg-gradient-to-t from-transparent via-[#8C77F5] to-transparent rounded-full" style="animation-delay: 300ms"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="absolute bottom-8 right-8 text-xs font-medium px-4 py-2 bg-white/10 rounded-3xl flex items-center gap-x-2">
-                                <span class="text-[#F48FB1]">LIVE</span>
-                                <span class="relative flex h-3 w-3">
-                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F48FB1] opacity-75"></span>
-                                    <span class="relative inline-flex rounded-full h-3 w-3 bg-[#F48FB1]"></span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Floating tag -->
-                <div class="absolute -top-4 -left-4 glass rounded-3xl px-8 py-4 shadow-2xl flex items-center gap-x-3 text-sm font-medium">
-                    <span class="text-3xl">❤️</span>
-                    <div>
-                        <div>Double tap =</div>
-                        <div class="text-[#D81B60]">“Thinking of you”</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Scroll indicator -->
-        <div class="absolute bottom-10 left-1/2 hidden md:flex flex-col items-center text-xs tracking-widest">
-            <div class="mb-2">SCROLL TO FEEL THE MAGIC</div>
-            <div class="w-px h-12 bg-gradient-to-b from-transparent via-white/30 to-transparent"></div>
-        </div>
-    </header>
-
-    <!-- USP BAR -->
-    <div class="bg-white/5 py-6 border-b border-white/10">
-        <div class="max-w-screen-2xl mx-auto px-8 text-center">
-            <p class="text-lg md:text-xl font-medium flex items-center justify-center gap-x-8 flex-wrap">
-                <span class="flex items-center gap-x-2"><span class="text-2xl">🧭</span> Live presence without constant texting</span>
-                <span class="flex items-center gap-x-2"><span class="text-2xl">🌈</span> Real mood, real emotions</span>
-                <span class="flex items-center gap-x-2"><span class="text-2xl">🛟</span> Silent SOS + accident detection</span>
-                <span class="flex items-center gap-x-2"><span class="text-2xl">❤️</span> Heartbeat sync on wrist</span>
-                <span class="text-[#D81B60] font-semibold">Between doesn’t just connect people… it lets them <span class="underline">feel</span> each other.</span>
-            </p>
-        </div>
-    </div>
-
-    <!-- FEATURES -->
-    <section id="features" class="max-w-screen-2xl mx-auto px-8 py-24">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-16">
-            <div>
-                <span class="px-4 py-1 text-xs font-medium rounded-3xl bg-gradient-to-r from-[#D81B60] to-[#8C77F5]">Core Experience</span>
-                <h2 class="heading-font text-5xl font-semibold mt-3">Everything you need to feel each other</h2>
-            </div>
-            <a href="#" onclick="showWaitlistModal()" class="hidden md:flex items-center text-sm font-medium group">
-                SEE ALL 12 FEATURES 
-                <span class="ml-3 group-hover:ml-4 text-2xl">→</span>
-            </a>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-6">
-            <!-- Card 1 -->
-            <div class="feature-card glass rounded-3xl p-8 border border-white/10">
-                <div class="h-12 w-12 rounded-2xl bg-gradient-to-br from-[#D81B60] to-[#F48FB1] flex items-center justify-center text-3xl mb-6">📍</div>
-                <h3 class="text-2xl font-semibold mb-2">Live Location + Aura Mode</h3>
-                <p class="text-white/70">Always-on tracking with privacy controls. Switch to Aura Mode for “Nearby • Traveling • At Work” only.</p>
-                <div class="mt-8 text-xs flex items-center justify-between text-[#F48FB1]">
-                    <div>Real-time map</div>
-                    <div>Privacy-first</div>
-                </div>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="feature-card glass rounded-3xl p-8 border border-white/10">
-                <div class="h-12 w-12 rounded-2xl bg-gradient-to-br from-[#8C77F5] to-[#F48FB1] flex items-center justify-center text-3xl mb-6">🌈</div>
-                <h3 class="text-2xl font-semibold mb-2">Emotion &amp; Mood Status</h3>
-                <p class="text-white/70">Manual selection or AI-predicted. Color-coded across the entire app. Weekly emotional insights.</p>
-                <div class="mt-8 flex gap-2">
-                    <div class="text-xs px-4 py-2 rounded-3xl bg-white/10">Happy</div>
-                    <div class="text-xs px-4 py-2 rounded-3xl bg-white/10">Stressed</div>
-                    <div class="text-xs px-4 py-2 rounded-3xl bg-white/10">Calm</div>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="feature-card glass rounded-3xl p-8 border border-white/10">
-                <div class="h-12 w-12 rounded-2xl bg-gradient-to-br from-[#D81B60] to-[#8C77F5] flex items-center justify-center text-3xl mb-6">🆘</div>
-                <h3 class="text-2xl font-semibold mb-2">Silent SOS + Accident Detection</h3>
-                <p class="text-white/70">Motion sensors detect crashes. 10-second window. Alerts inner circle + ambulance with Last Seen Path.</p>
-            </div>
-
-            <!-- Card 4 -->
-            <div class="feature-card glass rounded-3xl p-8 border border-white/10">
-                <div class="h-12 w-12 rounded-2xl bg-gradient-to-br from-[#F48FB1] to-[#8C77F5] flex items-center justify-center text-3xl mb-6">👆</div>
-                <h3 class="text-2xl font-semibold mb-2">Double Tap • Hug • Stay</h3>
-                <p class="text-white/70">Micro-interactions only. No chat. Just pure emotional signals with history.</p>
-            </div>
-
-            <!-- Card 5 -->
-            <div class="feature-card glass rounded-3xl p-8 border border-white/10">
-                <div class="h-12 w-12 rounded-2xl bg-gradient-to-br from-[#8C77F5] to-[#D81B60] flex items-center justify-center text-3xl mb-6">⌚</div>
-                <h3 class="text-2xl font-semibold mb-2">Smartwatch Integration</h3>
-                <p class="text-white/70">Wear OS &amp; watchOS. Haptic heartbeat sync. Quick-tap replies. Mood alerts on your wrist.</p>
-            </div>
-
-            <!-- Card 6 -->
-            <div class="feature-card glass rounded-3xl p-8 border border-white/10">
-                <div class="h-12 w-12 rounded-2xl bg-gradient-to-br from-[#D81B60] to-[#F48FB1] flex items-center justify-center text-3xl mb-6">🔒</div>
-                <h3 class="text-2xl font-semibold mb-2">Inner Circle Only</h3>
-                <p class="text-white/70">2–5 trusted people. Exact location + mood for them. Aura mode for everyone else.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- HOW IT WORKS / ONBOARDING -->
-    <section id="how" class="bg-[#0A0E1A] py-24 border-t border-b border-white/10">
-        <div class="max-w-screen-2xl mx-auto px-8">
-            <div class="grid md:grid-cols-12 gap-16 items-center">
-                <div class="md:col-span-5">
-                    <span class="text-xs uppercase tracking-[1px]">60-second onboarding</span>
-                    <h2 class="heading-font text-5xl font-semibold mt-3 leading-tight">You feel connected before you even finish setup</h2>
-                    <div class="mt-8 space-y-8">
-                        <div class="flex gap-6">
-                            <div class="font-mono text-4xl font-bold text-[#D81B60]">01</div>
-                            <div>
-                                <p class="font-semibold">Emotional Hook</p>
-                                <p class="text-white/70">“Feel them, even in silence” — animated heartbeat</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-6">
-                            <div class="font-mono text-4xl font-bold text-[#8C77F5]">02</div>
-                            <div>
-                                <p class="font-semibold">Phone + OTP (India-first)</p>
-                                <p class="text-white/70">Build your 2–5 person Inner Circle instantly</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-6">
-                            <div class="font-mono text-4xl font-bold text-[#F48FB1]">03</div>
-                            <div>
-                                <p class="font-semibold">First double-tap sent</p>
-                                <p class="text-white/70">You’re already connected. No words needed.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="md:col-span-7 bg-gradient-to-br from-[#1A237E]/30 to-[#0A0E1A] rounded-3xl p-2">
-                    <div class="glass rounded-3xl p-10">
-                        <div class="text-center mb-6">
-                            <div class="inline-flex items-center gap-2 text-sm bg-white/10 px-6 py-2 rounded-3xl">Your first 60 seconds with Between</div>
-                        </div>
-                        <div class="flex justify-center gap-8 flex-wrap">
-                            <div class="text-center max-w-[180px]">
-                                <div class="mx-auto w-16 h-16 mb-4 rounded-3xl bg-gradient-to-br from-[#D81B60] to-[#F48FB1] flex items-center justify-center text-4xl">❤️</div>
-                                <p class="font-medium">“Feel them, even in silence”</p>
-                                <p class="text-xs text-white/60 mt-1">Animated heartbeat pulse</p>
-                            </div>
-                            <div class="text-center max-w-[180px]">
-                                <div class="mx-auto w-16 h-16 mb-4 rounded-3xl bg-gradient-to-br from-[#8C77F5] to-[#F48FB1] flex items-center justify-center text-4xl">📍</div>
-                                <p class="font-medium">Share live location with Inner Circle</p>
-                            </div>
-                            <div class="text-center max-w-[180px]">
-                                <div class="mx-auto w-16 h-16 mb-4 rounded-3xl bg-gradient-to-br from-[#F48FB1] to-[#D81B60] flex items-center justify-center text-4xl">👆</div>
-                                <p class="font-medium">Double tap your first friend</p>
-                                <p class="text-xs text-[#D81B60]">Haptic feedback confirms</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SMARTWATCH -->
-    <section id="smartwatch" class="max-w-screen-2xl mx-auto px-8 py-24 bg-[#1A237E]/10">
-        <div class="flex flex-col md:flex-row items-center gap-16">
-            <div class="md:w-5/12">
-                <span class="px-4 py-1 bg-[#8C77F5] text-white text-xs font-medium rounded-3xl">WEAR OS + watchOS</span>
-                <h2 class="heading-font text-5xl font-semibold mt-4">Your heartbeat on their wrist. Their heartbeat on yours.</h2>
-                <p class="mt-6 text-xl text-white/80">Haptic feedback patterns. Mood alerts. Quick-tap replies. Real-time heartbeat sync between two users.</p>
-                <ul class="mt-10 space-y-6">
-                    <li class="flex gap-4"><span class="text-2xl">📳</span> <span>Instant wrist vibration when someone double-taps you</span></li>
-                    <li class="flex gap-4"><span class="text-2xl">❤️</span> <span>Synchronized pulsing vibration — feel their heartbeat</span></li>
-                    <li class="flex gap-4"><span class="text-2xl">🆘</span> <span>Emergency SOS triggers loud watch alarm + vibration</span></li>
-                </ul>
-            </div>
-            <div class="md:w-7/12 flex justify-center">
-                <div class="relative">
-                    <div class="w-80 h-80 border-8 border-[#F48FB1] rounded-[4rem] relative mx-auto flex items-center justify-center overflow-hidden shadow-2xl">
-                        <!-- Watch face simulation -->
-                        <div class="w-72 h-72 bg-[#0A0E1A] rounded-3xl p-4 relative">
-                            <div class="absolute inset-0 flex items-center justify-center flex-col">
-                                <div class="text-[#D81B60] text-5xl mb-4">❤️</div>
-                                <div class="text-4xl font-semibold">72 BPM</div>
-                                <div class="text-xs text-white/60">SYNCED WITH PRIYA</div>
-                                <div class="mt-8 flex gap-4">
-                                    <div class="px-6 py-2 bg-[#D81B60]/10 text-[#D81B60] rounded-3xl text-sm">Tap back</div>
-                                    <div class="px-6 py-2 bg-[#8C77F5]/10 text-[#8C77F5] rounded-3xl text-sm">Hug</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="absolute -bottom-6 -right-6 glass px-8 py-4 rounded-3xl text-sm flex items-center gap-x-3 shadow-2xl">
-                        <span class="text-[#F48FB1]">LIVE HEARTBEAT SYNC</span>
-                        <div class="flex gap-x-px">
-                            <div class="h-4 w-2 bg-[#D81B60] rounded-full pulse-heart"></div>
-                            <div class="h-4 w-2 bg-[#8C77F5] rounded-full pulse-heart" style="animation-delay:400ms"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SAFETY -->
-    <section id="safety" class="max-w-screen-2xl mx-auto px-8 py-24">
-        <div class="rounded-3xl bg-gradient-to-br from-[#D81B60]/10 to-[#8C77F5]/10 p-16">
-            <div class="grid md:grid-cols-2 gap-12">
-                <div>
-                    <h2 class="heading-font text-5xl font-semibold">Safety that feels like love.</h2>
-                    <p class="mt-6 text-xl">Accident detection. Silent SOS. Last Seen Path. Automatic alerts to your Inner Circle + emergency services.</p>
-                    <div class="mt-12 grid grid-cols-2 gap-6">
-                        <div class="glass rounded-3xl p-6">
-                            <div class="text-[#D81B60] font-medium">10-second confirmation window</div>
-                            <p class="text-sm text-white/70 mt-2">No false alarms. You stay in control.</p>
-                        </div>
-                        <div class="glass rounded-3xl p-6">
-                            <div class="text-[#F48FB1] font-medium">Last Seen Path</div>
-                            <p class="text-sm text-white/70 mt-2">Share the last 15 minutes of movement instantly.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-white/80 text-lg leading-relaxed">
-                    Heavy noise detection.<br>
-                    Inactivity + sudden impact detection.<br>
-                    Manual SOS from watch or phone.<br>
-                    <span class="text-[#D81B60] font-semibold">Even if your phone dies — the watch keeps sending location.</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- INNER CIRCLE -->
-    <section id="inner-circle" class="max-w-screen-2xl mx-auto px-8 py-24 bg-[#0A0E1A]">
-        <h2 class="heading-font text-center text-5xl font-semibold mb-4">Only for the people who matter most</h2>
-        <p class="text-center text-xl text-white/70 max-w-xl mx-auto">2–5 trusted people get exact location + real mood.<br>Everyone else sees Aura Mode only.</p>
-        
-        <div class="mt-16 flex justify-center flex-wrap gap-8">
-            <div class="text-center">
-                <div class="mx-auto mb-4 w-20 h-20 rounded-3xl bg-gradient-to-br from-[#F48FB1] to-[#D81B60] flex items-center justify-center text-5xl">👩🏻‍❤️‍💋‍👨🏻</div>
-                <p class="font-medium">Long-distance couple</p>
-            </div>
-            <div class="text-center">
-                <div class="mx-auto mb-4 w-20 h-20 rounded-3xl bg-gradient-to-br from-[#8C77F5] to-[#F48FB1] flex items-center justify-center text-5xl">👨‍👧‍👦</div>
-                <p class="font-medium">Protective parents</p>
-            </div>
-            <div class="text-center">
-                <div class="mx-auto mb-4 w-20 h-20 rounded-3xl bg-gradient-to-br from-[#D81B60] to-[#8C77F5] flex items-center justify-center text-5xl">👯‍♀️</div>
-                <p class="font-medium">Best friends</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- PRIVACY -->
-    <section id="privacy" class="max-w-screen-2xl mx-auto px-8 py-24 bg-white/5">
-        <div class="flex justify-between items-baseline mb-12">
-            <h2 class="heading-font text-5xl font-semibold">Built on radical trust</h2>
-            <div class="text-[#D81B60] text-sm font-medium">DPDP Act • GDPR-ready • No data sold • Ever.</div>
-        </div>
-        
-        <div class="grid md:grid-cols-12 gap-6">
-            <div class="md:col-span-4 glass rounded-3xl p-8">
-                <h4 class="font-semibold text-xl mb-3">Ghost Mode</h4>
-                <p class="text-white/70">One tap and you disappear completely.</p>
-            </div>
-            <div class="md:col-span-4 glass rounded-3xl p-8">
-                <h4 class="font-semibold text-xl mb-3">Do Not Disturb Emotion</h4>
-                <p class="text-white/70">“Need Space” status that still shows you’re safe.</p>
-            </div>
-            <div class="md:col-span-4 glass rounded-3xl p-8">
-                <h4 class="font-semibold text-xl mb-3">One-tap emergency exit</h4>
-                <p class="text-white/70">Removes all tracking instantly if anything feels wrong.</p>
-            </div>
-        </div>
-        
-        <p class="text-center text-white/60 mt-12 max-w-md mx-auto">Every design decision passed the test: “Does the user feel safe, not watched?”</p>
-    </section>
-
-    <!-- FINAL CTA -->
-    <div class="bg-gradient-to-r from-[#D81B60] to-[#8C77F5] py-24 text-center">
-        <div class="max-w-screen-2xl mx-auto px-8">
-            <h2 class="heading-font text-6xl font-semibold text-white">Ready to feel each other?</h2>
-            <p class="text-2xl text-white/90 mt-6">Join the closed beta. First 10,000 users get lifetime premium.</p>
+        function triggerSOS() {
+            document.getElementById('watch-ui-default').classList.add('hidden');
+            document.getElementById('watch-ui-confirm').classList.remove('hidden');
+            document.getElementById('watch-container').classList.add('border-error/50');
             
-            <button onclick="showWaitlistModal()" 
-                    class="mt-12 px-16 py-7 text-2xl bg-white text-[#0A0E1A] rounded-3xl font-semibold flex items-center mx-auto gap-x-4 hover:scale-105">
-                GET BETWEEN NOW
-                <span class="text-4xl">❤️</span>
-            </button>
+            countdown = 10;
+            document.getElementById('countdown-timer').innerText = countdown;
             
-            <p class="text-white/70 mt-8 text-sm">Available on Android &amp; iOS • Flutter-built • Smartwatch ready</p>
-        </div>
-    </div>
+            timer = setInterval(() => {
+                countdown--;
+                document.getElementById('countdown-timer').innerText = countdown;
+                if (countdown <= 0) {
+                    clearInterval(timer);
+                    showActiveSOS();
+                }
+            }, 1000);
+        }
 
-    <!-- FOOTER -->
-    <footer class="bg-[#0A0E1A] py-16 border-t border-white/10">
-        <div class="max-w-screen-2xl mx-auto px-8 text-white/60 text-sm">
-            <div class="flex flex-col md:flex-row justify-between items-start">
-                <div>
-                    <div class="flex items-center gap-x-3 mb-6">
-                        <div class="w-8 h-8 rounded-2xl bg-gradient-to-br from-[#D81B60] to-[#8C77F5] flex items-center justify-center text-white">❤️</div>
-                        <div class="heading-font text-3xl font-semibold gradient-text">Between</div>
-                    </div>
-                    <p>Feel Each Other © 2026</p>
-                    <p class="mt-1">Made with love in Hyderabad, India</p>
-                </div>
-                
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-x-12 gap-y-8 mt-10 md:mt-0">
-                    <div>
-                        <p class="font-semibold text-white mb-4">Product</p>
-                        <p class="mb-2">Features</p>
-                        <p class="mb-2">Smartwatch</p>
-                        <p class="mb-2">Safety</p>
-                    </div>
-                    <div>
-                        <p class="font-semibold text-white mb-4">Company</p>
-                        <p class="mb-2">About the vision</p>
-                        <p class="mb-2">Why Zenly failed — how we won’t</p>
-                        <p class="mb-2">Pitch Deck</p>
-                    </div>
-                    <div>
-                        <p class="font-semibold text-white mb-4">Legal</p>
-                        <p class="mb-2">Privacy Policy</p>
-                        <p class="mb-2">DPDP Compliance</p>
-                        <p class="mb-2">Terms</p>
-                    </div>
-                    <div>
-                        <p class="font-semibold text-white mb-4">Connect</p>
-                        <p class="mb-2">Instagram</p>
-                        <p class="mb-2">Instagram Reels campaign</p>
-                        <p class="mb-2">r/india • r/LongDistance</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center text-xs mt-16 opacity-40">
-                The world’s first Emotional Presence Platform.<br>
-                Between doesn’t just connect people… it lets them feel each other.
-            </div>
-        </div>
-    </footer>
+        function cancelSOS() {
+            clearInterval(timer);
+            document.getElementById('watch-ui-default').classList.remove('hidden');
+            document.getElementById('watch-ui-confirm').classList.add('hidden');
+            document.getElementById('watch-container').classList.remove('border-error/50');
+        }
 
-    <!-- WAITLIST MODAL -->
-    <div onclick="if(event.target.id === 'waitlist-modal')hideWaitlistModal()" 
-         id="waitlist-modal"
-         class="hidden fixed inset-0 bg-black/70 z-[9999] flex items-center justify-center">
-        <div onclick="event.stopImmediatePropagation()" 
-             class="glass w-full max-w-lg mx-4 rounded-3xl p-10">
-            <h3 class="heading-font text-4xl font-semibold mb-2">Join the Between Beta</h3>
-            <p class="text-white/70">Be among the first to feel each other. Free lifetime premium for first 10,000 users.</p>
+        function showActiveSOS() {
+            document.getElementById('watch-ui-confirm').classList.add('hidden');
+            document.getElementById('watch-ui-active').classList.remove('hidden');
+            document.getElementById('watch-container').classList.remove('border-error/50');
+            document.getElementById('watch-container').classList.add('border-error', 'shadow-[0_0_50px_rgba(255,180,171,0.3)]');
             
-            <form onsubmit="submitWaitlist(event)" class="mt-10 space-y-6">
-                <div>
-                    <label class="block text-xs mb-2 font-medium">PHONE NUMBER (India preferred)</label>
-                    <input type="tel" id="phone" 
-                           class="w-full bg-white/10 border border-white/30 focus:border-[#D81B60] rounded-3xl px-6 py-6 text-white placeholder:text-white/40 outline-none" 
-                           placeholder="+91 ___________" required>
-                </div>
-                
-                <div>
-                    <label class="block text-xs mb-2 font-medium">YOUR RELATIONSHIP TYPE</label>
-                    <div class="grid grid-cols-3 gap-3">
-                        <button type="button" onclick="this.classList.toggle('bg-[#D81B60]')" 
-                                class="py-4 rounded-3xl border border-white/30 text-sm font-medium">Couple</button>
-                        <button type="button" onclick="this.classList.toggle('bg-[#D81B60]')" 
-                                class="py-4 rounded-3xl border border-white/30 text-sm font-medium">Best Friends</button>
-                        <button type="button" onclick="this.classList.toggle('bg-[#D81B60]')" 
-                                class="py-4 rounded-3xl border border-white/30 text-sm font-medium">Family</button>
-                    </div>
-                </div>
-                
-                <button type="submit"
-                        class="w-full py-6 text-xl bg-[#D81B60] hover:bg-[#C01855] rounded-3xl font-semibold">Claim my spot in the Beta</button>
-            </form>
-            
-            <p onclick="hideWaitlistModal()" class="text-center mt-8 text-xs cursor-pointer text-white/40">Close</p>
-        </div>
-    </div>
+            // Auto reset after 5 seconds for demo loop
+            setTimeout(() => {
+                document.getElementById('watch-ui-active').classList.add('hidden');
+                document.getElementById('watch-ui-default').classList.remove('hidden');
+                document.getElementById('watch-container').classList.remove('border-error', 'shadow-[0_0_50px_rgba(255,180,171,0.3)]');
+            }, 5000);
+        }
 
-    <script>
-        // Tailwind script already loaded
-        function initializeTailwind() {
-            // No-op — Tailwind is already initialized via CDN
-            console.log('%c✅ Between website ready with exact brand colors & fonts', 'color:#D81B60; font-size:13px')
+        // Form Success logic
+        function showSuccess() {
+            document.getElementById('waitlist-form').classList.add('opacity-0', 'pointer-events-none');
+            document.getElementById('success-msg').classList.remove('hidden');
         }
-        
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu')
-            menu.classList.toggle('hidden')
-        }
-        
-        function showWaitlistModal() {
-            document.getElementById('waitlist-modal').classList.remove('hidden')
-            document.getElementById('waitlist-modal').classList.add('flex')
-        }
-        
-        function hideWaitlistModal() {
-            const modal = document.getElementById('waitlist-modal')
-            modal.classList.add('hidden')
-            modal.classList.remove('flex')
-        }
-        
-        function submitWaitlist(e) {
-            e.preventDefault()
-            const phone = document.getElementById('phone').value
-            if (phone) {
-                hideWaitlistModal()
-                setTimeout(() => {
-                    alert('🎉 Welcome to Between!\n\nYou are now #1848 in the beta waitlist.\n\nWe will send your invite within 48 hours.\n\nThank you for choosing to feel each other ❤️')
-                }, 600)
-            }
-        }
-        
-        // Keyboard shortcut for demo
-        document.addEventListener('keydown', function(e) {
-            if (e.metaKey && e.key === "k") {
-                e.preventDefault()
-                showWaitlistModal()
-            }
-        })
-        
-        // Auto-initialize
-        window.onload = initializeTailwind
     </script>
-</body>
-</html>
+</body></html>
