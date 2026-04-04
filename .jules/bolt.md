@@ -1,0 +1,3 @@
+## 2024-05-18 - Caching DOM Elements in Vanilla HTML Projects
+**Learning:** Found significant usage of inline JS in HTML (`onclick`, `onsubmit`), causing unnecessary DOM querying (e.g. `document.getElementById`) on every user interaction in a single, large HTML file (unlike the React/Next.js setup mentioned in the project README).
+**Action:** Always identify if the actual codebase aligns with the claimed architecture before planning optimizations. When faced with vanilla JS, caching elements in an object on `DOMContentLoaded` acts as a crucial first-step micro-optimization to improve interactivity performance.
