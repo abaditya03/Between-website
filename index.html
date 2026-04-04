@@ -5,7 +5,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Between — The Ethereal Pulse</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
@@ -14,7 +14,7 @@
         theme: {
           extend: {
             "colors": {
-                    "background": "#050510",
+                    "background": "#0f131f",
                     "on-secondary-container": "#ffdce0",
                     "surface-container-low": "#171b28",
                     "on-background": "#dfe2f3",
@@ -27,15 +27,15 @@
                     "error-container": "#93000a",
                     "tertiary-fixed": "#ffd9e2",
                     "on-tertiary-container": "#530b2c",
-                    "primary": "#00f3ff",
+                    "primary": "#00f2ff",
                     "on-surface-variant": "#c9c4d5",
                     "on-secondary-fixed-variant": "#90003b",
                     "on-primary-fixed": "#1b0062",
                     "tertiary-fixed-dim": "#ffb0c9",
-                    "surface-dim": "#0f131f",
-                    "on-primary": "#300796",
+                    "surface-dim": "#050505",
+                    "on-primary": "#003333",
                     "secondary-fixed": "#ffd9e2",
-                    "surface": "#050510",
+                    "surface": "#050505",
                     "on-surface": "#dfe2f3",
                     "outline-variant": "#484553",
                     "surface-variant": "#313442",
@@ -45,14 +45,14 @@
                     "on-error": "#690005",
                     "tertiary-container": "#d27394",
                     "error": "#ffb4ab",
-                    "secondary-container": "#ff003c",
+                    "secondary-container": "#c90456",
                     "surface-container-high": "#262a37",
                     "inverse-on-surface": "#2c303d",
                     "on-secondary": "#660028",
                     "on-primary-container": "#290089",
                     "inverse-surface": "#dfe2f3",
                     "secondary-fixed-dim": "#ffb2bf",
-                    "secondary": "#ffb2bf",
+                    "secondary": "#ff00ff",
                     "primary-fixed-dim": "#c9beff",
                     "surface-bright": "#353946",
                     "on-tertiary": "#5c1333"
@@ -64,9 +64,10 @@
                     "full": "9999px"
             },
             "fontFamily": {
-                    "headline": ["Orbitron"],
-                    "body": ["Rajdhani"],
-                    "label": ["Rajdhani"]
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"],
+                    "mono": ["Space Mono", "monospace"]
             }
           },
         },
@@ -74,9 +75,70 @@
     </script>
 <style>
         body {
-            background-color: #050510;
+            background-color: #050505;
             color: #dfe2f3;
             scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        .grid-bg {
+            background-image: 
+                linear-gradient(to right, rgba(0, 242, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 242, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .scanline {
+            width: 100%;
+            height: 100px;
+            z-index: 100;
+            background: linear-gradient(0deg, rgba(0, 242, 255, 0) 0%, rgba(0, 242, 255, 0.02) 50%, rgba(0, 242, 255, 0) 100%);
+            opacity: 0.1;
+            position: fixed;
+            bottom: 100%;
+            animation: scanline 10s linear infinite;
+        }
+        @keyframes scanline {
+            0% { bottom: 100%; }
+            100% { bottom: -100px; }
+        }
+        .glitch {
+            position: relative;
+        }
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00ff;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #00f2ff;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+        @keyframes glitch-anim {
+            0% { clip: rect(31px, 9999px, 94px, 0); }
+            20% { clip: rect(62px, 9999px, 42px, 0); }
+            40% { clip: rect(16px, 9999px, 78px, 0); }
+            60% { clip: rect(1px, 9999px, 13px, 0); }
+            80% { clip: rect(87px, 9999px, 5px, 0); }
+            100% { clip: rect(23px, 9999px, 98px, 0); }
+        }
+        @keyframes glitch-anim2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            20% { clip: rect(30px, 9999px, 20px, 0); }
+            40% { clip: rect(50px, 9999px, 70px, 0); }
+            60% { clip: rect(10px, 9999px, 30px, 0); }
+            80% { clip: rect(80px, 9999px, 10px, 0); }
+            100% { clip: rect(40px, 9999px, 60px, 0); }
         }
         .glow-orb {
             filter: blur(120px);
@@ -84,28 +146,47 @@
             z-index: 0;
         }
         .glass-panel {
-            background: rgba(49, 52, 66, 0.4);
+            background: rgba(10, 10, 10, 0.6);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(0, 242, 255, 0.1);
         }
         .text-gradient {
-            background: linear-gradient(135deg, #00f3ff 0%, #ff003c 100%);
+            background: linear-gradient(135deg, #00f2ff 0%, #ff00ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         .btn-gradient {
-            background: linear-gradient(135deg, #00f3ff 0%, #a200ff 100%);
+            background: linear-gradient(135deg, #00f2ff 0%, #ff00ff 100%);
         }
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+        .tech-border {
+            position: relative;
+        }
+        .tech-border::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 10px; height: 10px;
+            border-top: 2px solid #00f2ff;
+            border-left: 2px solid #00f2ff;
+        }
+        .tech-border::after {
+            content: '';
+            position: absolute;
+            bottom: 0; right: 0; width: 10px; height: 10px;
+            border-bottom: 2px solid #00f2ff;
+            border-right: 2px solid #00f2ff;
+        }
     </style>
 </head>
-<body class="font-body selection:bg-primary/30">
+<body class="font-body selection:bg-primary/30 grid-bg">
+    <div class="scanline"></div>
 <!-- TopAppBar -->
-<header class="fixed top-0 w-full z-50 bg-surface/60 dark:bg-[#0f131f]/60 backdrop-blur-xl shadow-2xl shadow-[#8C77F5]/5 font-['Plus_Jakarta_Sans'] tracking-tight antialiased">
+<header class="fixed top-0 w-full z-50 bg-surface/60 dark:bg-surface/60 backdrop-blur-xl shadow-2xl shadow-primary/5 font-['Plus_Jakarta_Sans'] tracking-tight antialiased border-b border-primary/10">
 <nav class="flex justify-between items-center px-8 h-20 max-w-full mx-auto">
-<div class="text-2xl font-bold tracking-tighter text-[#c9beff]">Between</div>
+<div class="text-2xl font-bold tracking-tighter text-primary">Between</div>
 <div class="hidden md:flex gap-8 items-center">
 <a class="text-slate-400 hover:text-white transition-colors" href="#features">Features</a>
 <a class="text-slate-400 hover:text-white transition-colors" href="#safety">Safety</a>
@@ -125,17 +206,29 @@
 <div class="fixed bottom-[-10%] right-[-10%] w-[50%] h-[50%] glow-orb bg-secondary-container/10 rounded-full"></div>
 <!-- Hero Section -->
 <section class="min-h-screen flex flex-col items-center justify-center pt-32 pb-20 px-6 relative z-10">
+    <!-- HUD Elements -->
+    <div class="absolute top-40 left-10 font-mono text-[10px] text-primary/50 hidden lg:block">
+        [ STATUS: OPTIMAL ]<br>
+        [ NEURAL LINK: ACTIVE ]<br>
+        [ LATENCY: 0.002ms ]
+    </div>
+    <div class="absolute top-40 right-10 font-mono text-[10px] text-secondary/50 text-right hidden lg:block">
+        [ COORDS: 40.7128° N ]<br>
+        [ LOAD: 14.2% ]<br>
+        [ UPLINK: SECURE ]
+    </div>
+
 <div class="max-w-4xl text-center space-y-8">
-<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium tracking-wide mb-4">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-mono tracking-wide mb-4">
 <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                    Ethereal Beta Now Live
+                    NEURAL INTERFACE v2.0.4
                 </div>
-<h1 class="text-5xl md:text-8xl font-headline font-extrabold tracking-tighter text-on-surface leading-[1.1]">
-                    Feel each other, <br/>
-<span class="text-gradient">even in silence.</span>
+<h1 class="text-5xl md:text-8xl font-headline font-extrabold tracking-tighter text-on-surface leading-[1.1] glitch" data-text="NEURAL LINK ESTABLISHED.">
+                    NEURAL LINK ESTABLISHED. <br/>
+<span class="text-gradient">THE EVOLUTION OF PRESENCE.</span>
 </h1>
-<p class="text-xl md:text-2xl text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
-                    The world's first Emotional Presence Platform. Connect deeper through bio-resonance and ambient digital intimacy.
+<p class="text-xl md:text-2xl text-on-surface-variant max-w-2xl mx-auto leading-relaxed font-body">
+                    Experience the next paradigm of human connection. Sub-atomic emotional mapping and real-time bio-resonance synchronization.
                 </p>
 <div class="flex flex-col sm:flex-row gap-6 justify-center pt-8">
 <a class="btn-gradient px-10 py-5 rounded-full text-lg font-bold text-white shadow-xl shadow-primary/20 hover:scale-105 transition-transform" href="#join">
@@ -169,19 +262,19 @@
 <div class="grid lg:grid-cols-2 gap-20 items-center">
 <div class="space-y-6">
 <h2 class="text-4xl md:text-6xl font-headline font-bold text-on-surface tracking-tight">
-                            Live Presence. <br/>Shared Souls.
+                            QUANTUM NEURAL MAPPING.
                         </h2>
 <p class="text-lg text-on-surface-variant leading-relaxed">
-                            Aura Mode visualizes the distance and emotional state of your inner circle. Feel their heartbeat as a subtle haptic pulse on your wrist, or see their digital aura glow when they're thinking of you.
+                            Bio-Resonance Interface visualizes the neural proximity and emotional frequency of your encrypted network. Sync with the sub-atomic pulse of your collective presence.
                         </p>
-<ul class="space-y-4 pt-6">
-<li class="flex items-center gap-4 text-on-surface">
-<span class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary material-symbols-outlined">radar</span>
-                                Real-time proximity bio-sensing
+<ul class="space-y-4 pt-6 font-mono text-sm">
+<li class="flex items-center gap-4 text-on-surface border border-primary/20 p-4 bg-primary/5 tech-border">
+<span class="w-10 h-10 rounded-none bg-primary/10 flex items-center justify-center text-primary material-symbols-outlined">radar</span>
+                                [ UPLINK ] Real-time proximity bio-sensing
                             </li>
-<li class="flex items-center gap-4 text-on-surface">
-<span class="w-10 h-10 rounded-full bg-secondary-container/10 flex items-center justify-center text-secondary-container material-symbols-outlined">flare</span>
-                                Emotional aura synchronization
+<li class="flex items-center gap-4 text-on-surface border border-secondary/20 p-4 bg-secondary/5 tech-border">
+<span class="w-10 h-10 rounded-none bg-secondary/10 flex items-center justify-center text-secondary material-symbols-outlined">flare</span>
+                                [ SYNC ] Emotional aura synchronization
                             </li>
 </ul>
 <div class="pt-10">
@@ -222,32 +315,36 @@
 <!-- The Emotion Engine -->
 <section class="py-32 px-6 relative transition-colors duration-700" id="engine-bg">
 <div class="max-w-4xl mx-auto text-center space-y-12">
-<h2 class="text-4xl md:text-6xl font-headline font-bold text-on-surface tracking-tight">The Emotion Engine</h2>
-<p class="text-lg text-on-surface-variant">Click a mood to shift your digital presence and let your circle feel your frequency.</p>
-<div class="flex flex-wrap justify-center gap-8 py-10">
-<button class="group flex flex-col items-center gap-4" onclick="document.getElementById('engine-bg').style.background = 'radial-gradient(circle, rgba(147,126,252,0.1) 0%, transparent 70%)'">
-<div class="w-24 h-24 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center shadow-[0_0_40px_rgba(147,126,252,0.2)] group-hover:scale-110 transition-transform">
+<h2 class="text-4xl md:text-6xl font-headline font-bold text-on-surface tracking-tight">THE EMOTION ENGINE</h2>
+<p class="text-lg text-on-surface-variant font-mono text-sm uppercase">CALIBRATE NEURAL FREQUENCY</p>
+<div class="flex flex-wrap justify-center gap-12 py-10">
+<button class="group flex flex-col items-center gap-4" onclick="document.getElementById('engine-bg').style.background = 'radial-gradient(circle, rgba(0,242,255,0.1) 0%, transparent 70%)'">
+<div class="w-24 h-24 rounded-none bg-primary/10 border border-primary/40 flex items-center justify-center tech-border group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(0,242,255,0.2)]">
 <span class="material-symbols-outlined text-4xl text-primary">sentiment_very_satisfied</span>
 </div>
-<span class="text-sm font-label uppercase tracking-widest text-primary">Happy</span>
+<span class="text-xs font-mono uppercase tracking-widest text-primary">High Freq</span>
+<span class="text-[10px] font-mono text-primary/40">12.4 Hz</span>
 </button>
-<button class="group flex flex-col items-center gap-4" onclick="document.getElementById('engine-bg').style.background = 'radial-gradient(circle, rgba(201,190,255,0.1) 0%, transparent 70%)'">
-<div class="w-24 h-24 rounded-full bg-on-surface-variant/10 border border-on-surface-variant/30 flex items-center justify-center shadow-[0_0_40px_rgba(201,190,255,0.1)] group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined text-4xl text-on-surface-variant">self_improvement</span>
+<button class="group flex flex-col items-center gap-4" onclick="document.getElementById('engine-bg').style.background = 'radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%)'">
+<div class="w-24 h-24 rounded-none bg-white/5 border border-white/20 flex items-center justify-center tech-border group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl text-white">self_improvement</span>
 </div>
-<span class="text-sm font-label uppercase tracking-widest text-on-surface-variant">Calm</span>
+<span class="text-xs font-mono uppercase tracking-widest text-white/60">Alpha State</span>
+<span class="text-[10px] font-mono text-white/30">8.2 Hz</span>
 </button>
-<button class="group flex flex-col items-center gap-4" onclick="document.getElementById('engine-bg').style.background = 'radial-gradient(circle, rgba(201,4,86,0.1) 0%, transparent 70%)'">
-<div class="w-24 h-24 rounded-full bg-secondary-container/20 border border-secondary-container/40 flex items-center justify-center shadow-[0_0_40px_rgba(201,4,86,0.2)] group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined text-4xl text-secondary-container">mood_bad</span>
+<button class="group flex flex-col items-center gap-4" onclick="document.getElementById('engine-bg').style.background = 'radial-gradient(circle, rgba(255,0,255,0.1) 0%, transparent 70%)'">
+<div class="w-24 h-24 rounded-none bg-secondary/10 border border-secondary/40 flex items-center justify-center tech-border group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(255,0,255,0.2)]">
+<span class="material-symbols-outlined text-4xl text-secondary">mood_bad</span>
 </div>
-<span class="text-sm font-label uppercase tracking-widest text-secondary-container">Melancholy</span>
+<span class="text-xs font-mono uppercase tracking-widest text-secondary">Low Freq</span>
+<span class="text-[10px] font-mono text-secondary/40">4.1 Hz</span>
 </button>
-<button class="group flex flex-col items-center gap-4" onclick="document.getElementById('engine-bg').style.background = 'radial-gradient(circle, rgba(255,176,201,0.1) 0%, transparent 70%)'">
-<div class="w-24 h-24 rounded-full bg-tertiary/20 border border-tertiary/40 flex items-center justify-center shadow-[0_0_40px_rgba(255,176,201,0.2)] group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined text-4xl text-tertiary">favorite</span>
+<button class="group flex flex-col items-center gap-4" onclick="document.getElementById('engine-bg').style.background = 'radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)'">
+<div class="tech-border w-24 h-24 rounded-none bg-white/10 border border-white/40 flex items-center justify-center group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+<span class="material-symbols-outlined text-4xl text-white">favorite</span>
 </div>
-<span class="text-sm font-label uppercase tracking-widest text-tertiary">Loving</span>
+<span class="text-xs font-mono uppercase tracking-widest text-white">Resonance</span>
+<span class="text-[10px] font-mono text-white/40">15.0 Hz</span>
 </button>
 </div>
 </div>
@@ -257,19 +354,25 @@
 <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
 <div class="relative order-2 lg:order-1 flex justify-center">
 <!-- Smartwatch Mockup -->
-<div class="relative w-72 h-80 bg-black rounded-[4rem] border-[8px] border-zinc-800 shadow-2xl p-6 transition-all duration-300" id="watch-container">
+<div class="relative w-72 h-80 bg-black rounded-none border-[8px] border-zinc-800 shadow-2xl p-6 transition-all duration-300 tech-border" id="watch-container">
 <div class="absolute inset-0 bg-gradient-to-br from-zinc-700/20 to-transparent rounded-[3.5rem] pointer-events-none"></div>
-<div class="h-full w-full bg-[#0a0e1a] rounded-[2.5rem] flex flex-col items-center justify-center text-center p-4 overflow-hidden relative" id="watch-screen">
+<div class="h-full w-full bg-[#0a0e1a] rounded-none flex flex-col items-center justify-center text-center p-4 overflow-hidden relative" id="watch-screen">
+    <!-- Biometric Overlay -->
+    <div class="absolute top-2 left-2 opacity-30">
+        <svg width="60" height="20" viewBox="0 0 60 20" class="stroke-primary fill-none">
+            <path d="M0 10 L10 10 L15 0 L25 20 L30 10 L60 10" stroke-width="1"></path>
+        </svg>
+    </div>
 <!-- Watch UI Default -->
-<div class="space-y-4" id="watch-ui-default">
-<div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-2">
+<div class="space-y-4 font-mono" id="watch-ui-default">
+<div class="w-12 h-12 bg-primary/20 rounded-none flex items-center justify-center mx-auto mb-2 tech-border">
 <span class="material-symbols-outlined text-primary">notifications_active</span>
 </div>
-<p class="text-xs font-bold text-on-surface tracking-widest uppercase">Emergency Hub</p>
-<button class="w-full py-4 bg-secondary-container text-white rounded-2xl font-black text-sm hover:scale-105 transition-transform active:scale-95" onclick="triggerSOS()">
-                                    TRIGGER SOS
+<p class="text-[10px] font-bold text-on-surface tracking-widest uppercase">[ TACTICAL HUB ]</p>
+<button class="w-full py-4 bg-secondary text-white rounded-none font-black text-sm hover:scale-105 transition-transform active:scale-95 shadow-[0_0_15px_rgba(255,0,255,0.4)]" onclick="triggerSOS()">
+                                    INITIALIZE SOS
                                 </button>
-<p class="text-[10px] text-on-surface-variant">Notifies entire inner circle instantly</p>
+<p class="text-[8px] text-primary/60 uppercase">Protocol: Global Broadcast</p>
 </div>
 <!-- SOS Confirmation State -->
 <div class="hidden space-y-4" id="watch-ui-confirm">
@@ -289,9 +392,9 @@
 </div>
 </div>
 <div class="order-1 lg:order-2 space-y-8">
-<h2 class="text-4xl md:text-6xl font-headline font-bold text-on-surface tracking-tight">Guardian at Your Wrist</h2>
+<h2 class="text-4xl md:text-6xl font-headline font-bold text-on-surface tracking-tight">TACTICAL GUARDIAN PROTOCOL.</h2>
 <p class="text-lg text-on-surface-variant leading-relaxed">
-                        In critical moments, silence speaks loudest. Trigger an SOS from your smartwatch to instantly share your exact live location and bio-vitals with your trusted circle. No words needed.
+                        In critical node failure, silence is your uplink. Execute SOS protocol to broadcast high-fidelity bio-telemetry and quantum location data to your network.
                     </p>
 <div class="grid grid-cols-2 gap-4">
 <div class="p-6 glass-panel rounded-xl border border-outline-variant/10">
@@ -312,8 +415,8 @@
 <section class="py-32 px-6" id="privacy">
 <div class="max-w-7xl mx-auto">
 <div class="text-center max-w-2xl mx-auto mb-20">
-<h2 class="text-4xl md:text-5xl font-headline font-bold text-on-surface tracking-tight mb-6">You control the Pulse.</h2>
-<p class="text-on-surface-variant">We designed Between with privacy as its nervous system. Decide exactly who sees you, and when.</p>
+<h2 class="text-4xl md:text-5xl font-headline font-bold text-on-surface tracking-tight mb-6">NEURAL ENCRYPTION & DATA SOVEREIGNTY.</h2>
+<p class="text-on-surface-variant font-mono text-sm uppercase">Full node control. Encrypted synaptic transmission.</p>
 </div>
 <div class="grid md:grid-cols-3 gap-8">
 <div class="glass-panel p-10 rounded-[2rem] border border-outline-variant/10 space-y-6 hover:bg-surface-container-high/50 transition-colors group">
@@ -368,16 +471,47 @@
 </div>
 </div>
 </section>
+<!-- System Terminal -->
+<section class="py-20 px-6 bg-black border-y border-primary/20">
+    <div class="max-w-4xl mx-auto font-mono text-[10px] md:text-xs text-primary/70 bg-[#050505] p-6 border border-primary/30 tech-border h-64 overflow-hidden relative">
+        <div class="absolute top-2 right-4 text-[8px] text-primary/30 uppercase tracking-widest">Neural Link Console</div>
+        <div class="space-y-1 animate-[terminal_20s_infinite_linear]">
+            <p>> INITIALIZING SECURE NEURAL UPLINK...</p>
+            <p>> HANDSHAKE WITH NODE_042: SUCCESSFUL</p>
+            <p>> ENCRYPTING BIO-TELEMETRY DATA (AES-4096-QUANTUM)...</p>
+            <p>> ESTABLISHING SYMBOLIC RESONANCE OVERLAY...</p>
+            <p>> MAPPING NEURAL TOPOLOGY...</p>
+            <p>> UPLOADING EMOTIONAL FREQUENCY: 12.4 Hz</p>
+            <p>> [ OK ] ALL SYSTEMS NOMINAL.</p>
+            <p>> MONITORING PULSE...</p>
+            <p>> HEARTBEAT SYNC: VERIFIED</p>
+            <p>> PROXIMITY SENSOR: ACTIVE (RADIUS: 5.0km)</p>
+            <p>> DATA SOVEREIGNTY PROTOCOL: ENGAGED</p>
+            <p>> > > > REFRESHING BUFFER...</p>
+            <p>> INITIALIZING SECURE NEURAL UPLINK...</p>
+            <p>> HANDSHAKE WITH NODE_042: SUCCESSFUL</p>
+            <p>> ENCRYPTING BIO-TELEMETRY DATA (AES-4096-QUANTUM)...</p>
+            <p>> ESTABLISHING SYMBOLIC RESONANCE OVERLAY...</p>
+        </div>
+    </div>
+</section>
+<style>
+    @keyframes terminal {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-50%); }
+    }
+</style>
+
 </main>
 <!-- Footer -->
-<footer class="bg-[#0f131f] dark:bg-[#0f131f] w-full py-12 border-t border-[#c9beff]/10">
+<footer class="bg-surface dark:bg-surface w-full py-12 border-t border-primary/10">
 <div class="flex flex-col md:flex-row justify-between items-center px-12 gap-8 font-['Plus_Jakarta_Sans'] text-sm uppercase tracking-widest">
-<div class="text-lg font-black text-[#c9beff] opacity-50">Between</div>
+<div class="text-lg font-black text-primary opacity-50">Between</div>
 <div class="flex gap-8 text-slate-500">
-<a class="hover:text-[#c9beff] hover:translate-y-[-2px] transition-all" href="#">Privacy</a>
-<a class="hover:text-[#c9beff] hover:translate-y-[-2px] transition-all" href="#">Terms</a>
-<a class="hover:text-[#c9beff] hover:translate-y-[-2px] transition-all" href="#">Twitter</a>
-<a class="hover:text-[#c9beff] hover:translate-y-[-2px] transition-all" href="#">Instagram</a>
+<a class="hover:text-primary hover:translate-y-[-2px] transition-all" href="#">Privacy</a>
+<a class="hover:text-primary hover:translate-y-[-2px] transition-all" href="#">Terms</a>
+<a class="hover:text-primary hover:translate-y-[-2px] transition-all" href="#">Twitter</a>
+<a class="hover:text-primary hover:translate-y-[-2px] transition-all" href="#">Instagram</a>
 </div>
 <div class="text-slate-500 lowercase tracking-normal">
                 © 2024 Between. The Ethereal Pulse.
