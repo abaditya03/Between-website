@@ -318,28 +318,28 @@
 <h2 class="text-4xl md:text-6xl font-headline font-bold text-on-surface tracking-tight">THE EMOTION ENGINE</h2>
 <p class="text-lg text-on-surface-variant font-mono text-sm uppercase">CALIBRATE NEURAL FREQUENCY</p>
 <div class="flex flex-wrap justify-center gap-12 py-10">
-<button class="group flex flex-col items-center gap-4" onclick="document.getElementById('engine-bg').style.background = 'radial-gradient(circle, rgba(0,242,255,0.1) 0%, transparent 70%)'">
+<button class="group flex flex-col items-center gap-4 engine-btn" data-color="radial-gradient(circle, rgba(0,242,255,0.1) 0%, transparent 70%)">
 <div class="w-24 h-24 rounded-none bg-primary/10 border border-primary/40 flex items-center justify-center tech-border group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(0,242,255,0.2)]">
 <span class="material-symbols-outlined text-4xl text-primary">sentiment_very_satisfied</span>
 </div>
 <span class="text-xs font-mono uppercase tracking-widest text-primary">High Freq</span>
 <span class="text-[10px] font-mono text-primary/40">12.4 Hz</span>
 </button>
-<button class="group flex flex-col items-center gap-4" onclick="document.getElementById('engine-bg').style.background = 'radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%)'">
+<button class="group flex flex-col items-center gap-4 engine-btn" data-color="radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%)">
 <div class="w-24 h-24 rounded-none bg-white/5 border border-white/20 flex items-center justify-center tech-border group-hover:scale-110 transition-transform">
 <span class="material-symbols-outlined text-4xl text-white">self_improvement</span>
 </div>
 <span class="text-xs font-mono uppercase tracking-widest text-white/60">Alpha State</span>
 <span class="text-[10px] font-mono text-white/30">8.2 Hz</span>
 </button>
-<button class="group flex flex-col items-center gap-4" onclick="document.getElementById('engine-bg').style.background = 'radial-gradient(circle, rgba(255,0,255,0.1) 0%, transparent 70%)'">
+<button class="group flex flex-col items-center gap-4 engine-btn" data-color="radial-gradient(circle, rgba(255,0,255,0.1) 0%, transparent 70%)">
 <div class="w-24 h-24 rounded-none bg-secondary/10 border border-secondary/40 flex items-center justify-center tech-border group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(255,0,255,0.2)]">
 <span class="material-symbols-outlined text-4xl text-secondary">mood_bad</span>
 </div>
 <span class="text-xs font-mono uppercase tracking-widest text-secondary">Low Freq</span>
 <span class="text-[10px] font-mono text-secondary/40">4.1 Hz</span>
 </button>
-<button class="group flex flex-col items-center gap-4" onclick="document.getElementById('engine-bg').style.background = 'radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)'">
+<button class="group flex flex-col items-center gap-4 engine-btn" data-color="radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)">
 <div class="tech-border w-24 h-24 rounded-none bg-white/10 border border-white/40 flex items-center justify-center group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.1)]">
 <span class="material-symbols-outlined text-4xl text-white">favorite</span>
 </div>
@@ -369,7 +369,7 @@
 <span class="material-symbols-outlined text-primary">notifications_active</span>
 </div>
 <p class="text-[10px] font-bold text-on-surface tracking-widest uppercase">[ TACTICAL HUB ]</p>
-<button class="w-full py-4 bg-secondary text-white rounded-none font-black text-sm hover:scale-105 transition-transform active:scale-95 shadow-[0_0_15px_rgba(255,0,255,0.4)]" onclick="triggerSOS()">
+<button class="w-full py-4 bg-secondary text-white rounded-none font-black text-sm hover:scale-105 transition-transform active:scale-95 shadow-[0_0_15px_rgba(255,0,255,0.4)]" id="btn-trigger-sos">
                                     INITIALIZE SOS
                                 </button>
 <p class="text-[8px] text-primary/60 uppercase">Protocol: Global Broadcast</p>
@@ -378,7 +378,7 @@
 <div class="hidden space-y-4" id="watch-ui-confirm">
 <p class="text-xs font-bold text-error tracking-widest uppercase">Cancelling in...</p>
 <div class="text-4xl font-black text-on-surface" id="countdown-timer">10</div>
-<button class="w-full py-2 border border-outline-variant/30 text-on-surface rounded-xl text-xs" onclick="cancelSOS()">
+<button class="w-full py-2 border border-outline-variant/30 text-on-surface rounded-xl text-xs" id="btn-cancel-sos">
                                     CANCEL
                                 </button>
 </div>
@@ -422,7 +422,7 @@
 <div class="glass-panel p-10 rounded-[2rem] border border-outline-variant/10 space-y-6 hover:bg-surface-container-high/50 transition-colors group">
 <div class="flex justify-between items-center">
 <span class="material-symbols-outlined text-3xl text-primary">my_location</span>
-<div class="w-12 h-6 bg-surface-container-highest rounded-full p-1 cursor-pointer relative" onclick="this.querySelector('div').classList.toggle('translate-x-6'); this.classList.toggle('bg-primary')">
+<div class="w-12 h-6 bg-surface-container-highest rounded-full p-1 cursor-pointer relative privacy-toggle" data-toggle-classes="bg-primary">
 <div class="w-4 h-4 bg-white rounded-full transition-transform"></div>
 </div>
 </div>
@@ -432,7 +432,7 @@
 <div class="glass-panel p-10 rounded-[2rem] border border-outline-variant/10 space-y-6 hover:bg-surface-container-high/50 transition-colors group">
 <div class="flex justify-between items-center">
 <span class="material-symbols-outlined text-3xl text-secondary">flare</span>
-<div class="w-12 h-6 bg-primary rounded-full p-1 cursor-pointer relative" onclick="this.querySelector('div').classList.toggle('translate-x-6'); this.classList.toggle('bg-surface-container-highest'); this.classList.toggle('bg-primary')">
+<div class="w-12 h-6 bg-primary rounded-full p-1 cursor-pointer relative privacy-toggle" data-toggle-classes="bg-primary,bg-surface-container-highest">
 <div class="w-4 h-4 bg-white rounded-full transition-transform translate-x-6"></div>
 </div>
 </div>
@@ -442,7 +442,7 @@
 <div class="glass-panel p-10 rounded-[2rem] border border-outline-variant/10 space-y-6 hover:bg-surface-container-high/50 transition-colors group">
 <div class="flex justify-between items-center">
 <span class="material-symbols-outlined text-3xl text-tertiary">visibility</span>
-<div class="w-12 h-6 bg-primary rounded-full p-1 cursor-pointer relative" onclick="this.querySelector('div').classList.toggle('translate-x-6'); this.classList.toggle('bg-surface-container-highest'); this.classList.toggle('bg-primary')">
+<div class="w-12 h-6 bg-primary rounded-full p-1 cursor-pointer relative privacy-toggle" data-toggle-classes="bg-primary,bg-surface-container-highest">
 <div class="w-4 h-4 bg-white rounded-full transition-transform translate-x-6"></div>
 </div>
 </div>
@@ -459,7 +459,7 @@
 <div class="relative z-10 space-y-10">
 <h2 class="text-4xl md:text-6xl font-headline font-bold text-on-surface tracking-tight">Join the Ethereal Pulse.</h2>
 <p class="text-xl text-on-surface-variant max-w-xl mx-auto">Be the first to experience the future of intimacy. Our initial circle is growing fast.</p>
-<form class="flex flex-col md:flex-row gap-4 max-w-md mx-auto" id="waitlist-form" onsubmit="event.preventDefault(); showSuccess()">
+<form class="flex flex-col md:flex-row gap-4 max-w-md mx-auto" id="waitlist-form"  >
 <input class="flex-grow bg-surface-container-lowest border border-outline-variant/30 rounded-full px-6 py-4 text-on-surface focus:outline-none focus:border-primary/50 transition-all placeholder:text-on-surface-variant/50" placeholder="Enter your email" required="" type="email"/>
 <button class="btn-gradient px-8 py-4 rounded-full font-bold text-white whitespace-nowrap hover:scale-105 transition-transform active:scale-95" type="submit">
                             Join Waitlist
@@ -519,21 +519,31 @@
 </div>
 </footer>
 <script>
+        // Cached DOM Elements
+        const watchUiDefault = document.getElementById('watch-ui-default');
+        const watchUiConfirm = document.getElementById('watch-ui-confirm');
+        const watchContainer = document.getElementById('watch-container');
+        const countdownTimer = document.getElementById('countdown-timer');
+        const watchUiActive = document.getElementById('watch-ui-active');
+        const waitlistForm = document.getElementById('waitlist-form');
+        const successMsg = document.getElementById('success-msg');
+        const engineBg = document.getElementById('engine-bg');
+
         // SOS Interactive Logic
         let timer;
         let countdown = 10;
 
         function triggerSOS() {
-            document.getElementById('watch-ui-default').classList.add('hidden');
-            document.getElementById('watch-ui-confirm').classList.remove('hidden');
-            document.getElementById('watch-container').classList.add('border-error/50');
+            watchUiDefault.classList.add('hidden');
+            watchUiConfirm.classList.remove('hidden');
+            watchContainer.classList.add('border-error/50');
             
             countdown = 10;
-            document.getElementById('countdown-timer').innerText = countdown;
+            countdownTimer.innerText = countdown;
             
             timer = setInterval(() => {
                 countdown--;
-                document.getElementById('countdown-timer').innerText = countdown;
+                countdownTimer.innerText = countdown;
                 if (countdown <= 0) {
                     clearInterval(timer);
                     showActiveSOS();
@@ -543,29 +553,71 @@
 
         function cancelSOS() {
             clearInterval(timer);
-            document.getElementById('watch-ui-default').classList.remove('hidden');
-            document.getElementById('watch-ui-confirm').classList.add('hidden');
-            document.getElementById('watch-container').classList.remove('border-error/50');
+            watchUiDefault.classList.remove('hidden');
+            watchUiConfirm.classList.add('hidden');
+            watchContainer.classList.remove('border-error/50');
         }
 
         function showActiveSOS() {
-            document.getElementById('watch-ui-confirm').classList.add('hidden');
-            document.getElementById('watch-ui-active').classList.remove('hidden');
-            document.getElementById('watch-container').classList.remove('border-error/50');
-            document.getElementById('watch-container').classList.add('border-error', 'shadow-[0_0_50px_rgba(255,180,171,0.3)]');
+            watchUiConfirm.classList.add('hidden');
+            watchUiActive.classList.remove('hidden');
+            watchContainer.classList.remove('border-error/50');
+            watchContainer.classList.add('border-error', 'shadow-[0_0_50px_rgba(255,180,171,0.3)]');
             
             // Auto reset after 5 seconds for demo loop
             setTimeout(() => {
-                document.getElementById('watch-ui-active').classList.add('hidden');
-                document.getElementById('watch-ui-default').classList.remove('hidden');
-                document.getElementById('watch-container').classList.remove('border-error', 'shadow-[0_0_50px_rgba(255,180,171,0.3)]');
+                watchUiActive.classList.add('hidden');
+                watchUiDefault.classList.remove('hidden');
+                watchContainer.classList.remove('border-error', 'shadow-[0_0_50px_rgba(255,180,171,0.3)]');
             }, 5000);
         }
 
         // Form Success logic
         function showSuccess() {
-            document.getElementById('waitlist-form').classList.add('opacity-0', 'pointer-events-none');
-            document.getElementById('success-msg').classList.remove('hidden');
+            waitlistForm.classList.add('opacity-0', 'pointer-events-none');
+            successMsg.classList.remove('hidden');
         }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            // Engine buttons
+            document.querySelectorAll('.engine-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const btnEl = e.currentTarget;
+                    if (engineBg) {
+                        engineBg.style.background = btnEl.getAttribute('data-color');
+                    }
+                });
+            });
+
+            // SOS buttons
+            const btnTriggerSOS = document.getElementById('btn-trigger-sos');
+            const btnCancelSOS = document.getElementById('btn-cancel-sos');
+            if (btnTriggerSOS) btnTriggerSOS.addEventListener('click', triggerSOS);
+            if (btnCancelSOS) btnCancelSOS.addEventListener('click', cancelSOS);
+
+            // Privacy toggles
+            document.querySelectorAll('.privacy-toggle').forEach(toggle => {
+                toggle.addEventListener('click', (e) => {
+                    const el = e.currentTarget;
+                    const innerDiv = el.querySelector('div');
+                    if (innerDiv) {
+                        innerDiv.classList.toggle('translate-x-6');
+                    }
+                    const classes = el.getAttribute('data-toggle-classes');
+                    if (classes) {
+                        classes.split(',').forEach(cls => el.classList.toggle(cls));
+                    }
+                });
+            });
+
+            // Waitlist form
+            if (waitlistForm) {
+                waitlistForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    showSuccess();
+                });
+            }
+        });
     </script>
 </body></html>
