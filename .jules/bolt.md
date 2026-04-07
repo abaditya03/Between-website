@@ -1,0 +1,3 @@
+## 2026-04-07 - [Architecture Mismatch]
+**Learning:** The README.md claims the project is a Next.js application, but it is actually just a single static HTML file (`index.html`). The standard Next.js directory structure (`app/`, `components/`) and package configuration (`package.json`) are missing.
+**Action:** Do not attempt to use Node.js build tools like `npm run build` or `npm run dev` as suggested in the docs. Apply optimizations directly to the static `index.html` file and use Node tools (like jsdom) only for testing without modifying any non-existent project config.
