@@ -1,0 +1,3 @@
+## 2026-04-08 - Don't lazy load LCP images
+**Learning:** I attempted to add `loading="lazy"` to the images in the `#features` section (lines 285+), thinking they were below the fold. However, the code review pointed out that they are visible above the fold on initial load in some viewports. This makes lazy loading them an anti-pattern as it delays the LCP.
+**Action:** Always visually verify the placement of elements on the page before applying lazy loading to images. Do not apply lazy loading to images that could be visible on initial load.
