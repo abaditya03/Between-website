@@ -168,13 +168,24 @@ const CuteAuraDoll = ({ isIdle, isTyping, size = 60 }) => {
 
 // --- Scroll & UI Helpers ---
 const useScrollParallax = () => {
-  const [scrollY, setScrollY] = useState(0);
+  const ref = useRef(null);
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (ref.current) {
+            ref.current.style.transform = `translateY(${window.scrollY * 0.15}px)`;
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  return scrollY;
+  return ref;
 };
 
 // --- GEMINI API HELPER ---
@@ -644,7 +655,7 @@ const GuardianSosDemo = () => {
 
 // --- Main App Component ---
 export default function App() {
-  const scrollY = useScrollParallax();
+  const parallaxRef = useScrollParallax();
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -726,7 +737,7 @@ export default function App() {
       {/* Hero */}
       <section className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 pt-20 overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] sm:w-[800px] sm:h-[800px] bg-[#D81B60]/10 blur-[150px] rounded-full pointer-events-none mix-blend-screen" />
-        <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center text-center" style={{ transform: `translateY(${scrollY * 0.15}px)` }}>
+        <div ref={parallaxRef} className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center text-center" style={{ transform: `translateY(0px)` }}>
           <div className="reveal opacity-0 translate-y-12 inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-[#8C77F5]/30 bg-[#1A237E]/20 backdrop-blur-md mb-6 sm:mb-8 font-mono text-[10px] sm:text-xs text-[#8C77F5]">
             <Sparkles size={12} className="text-[#D81B60]" /> POWERED BY GEMINI PRO
           </div>
