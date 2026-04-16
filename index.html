@@ -167,14 +167,50 @@ const CuteAuraDoll = ({ isIdle, isTyping, size = 60 }) => {
 };
 
 // --- Scroll & UI Helpers ---
+// OPTIMIZATION: Added requestAnimationFrame throttling to prevent scroll events
+// from firing synchronously faster than the display refresh rate.
 const useScrollParallax = () => {
   const [scrollY, setScrollY] = useState(0);
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   return scrollY;
+};
+
+// --- Parallax Hero Component ---
+// OPTIMIZATION: Extracted Hero section into its own component.
+// This encapsulates the `useScrollParallax` hook, ensuring that high-frequency
+// scroll state updates only trigger re-renders in this specific component,
+// rather than re-rendering the entire root App component.
+const ParallaxHero = () => {
+  const scrollY = useScrollParallax();
+  return (
+    <section className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 pt-20 overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] sm:w-[800px] sm:h-[800px] bg-[#D81B60]/10 blur-[150px] rounded-full pointer-events-none mix-blend-screen" />
+      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center text-center" style={{ transform: `translateY(${scrollY * 0.15}px)` }}>
+        <div className="reveal opacity-0 translate-y-12 inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-[#8C77F5]/30 bg-[#1A237E]/20 backdrop-blur-md mb-6 sm:mb-8 font-mono text-[10px] sm:text-xs text-[#8C77F5]">
+          <Sparkles size={12} className="text-[#D81B60]" /> POWERED BY GEMINI PRO
+        </div>
+        <h1 className="reveal opacity-0 translate-y-12 delay-100 font-sora text-4xl sm:text-6xl md:text-[7rem] lg:text-[9rem] font-extrabold tracking-tighter leading-[0.9] mb-6 sm:mb-8">
+          Always tied, <br /><span className="text-gradient">never apart.</span>
+        </h1>
+        <p className="reveal opacity-0 translate-y-12 delay-200 text-lg sm:text-2xl md:text-3xl font-light text-gray-400 max-w-3xl mb-12 px-4">
+          Between doesn't just connect people... <br className="hidden md:block"/><strong className="text-white font-medium">it lets them feel each other.</strong>
+        </p>
+      </div>
+    </section>
+  );
 };
 
 // --- GEMINI API HELPER ---
@@ -644,7 +680,6 @@ const GuardianSosDemo = () => {
 
 // --- Main App Component ---
 export default function App() {
-  const scrollY = useScrollParallax();
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -724,20 +759,7 @@ export default function App() {
       )}
 
       {/* Hero */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 pt-20 overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] sm:w-[800px] sm:h-[800px] bg-[#D81B60]/10 blur-[150px] rounded-full pointer-events-none mix-blend-screen" />
-        <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center text-center" style={{ transform: `translateY(${scrollY * 0.15}px)` }}>
-          <div className="reveal opacity-0 translate-y-12 inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-[#8C77F5]/30 bg-[#1A237E]/20 backdrop-blur-md mb-6 sm:mb-8 font-mono text-[10px] sm:text-xs text-[#8C77F5]">
-            <Sparkles size={12} className="text-[#D81B60]" /> POWERED BY GEMINI PRO
-          </div>
-          <h1 className="reveal opacity-0 translate-y-12 delay-100 font-sora text-4xl sm:text-6xl md:text-[7rem] lg:text-[9rem] font-extrabold tracking-tighter leading-[0.9] mb-6 sm:mb-8">
-            Always tied, <br /><span className="text-gradient">never apart.</span>
-          </h1>
-          <p className="reveal opacity-0 translate-y-12 delay-200 text-lg sm:text-2xl md:text-3xl font-light text-gray-400 max-w-3xl mb-12 px-4">
-            Between doesn't just connect people... <br className="hidden md:block"/><strong className="text-white font-medium">it lets them feel each other.</strong>
-          </p>
-        </div>
-      </section>
+      <ParallaxHero />
 
       {/* THE 15 FEATURES MATRIX */}
       <section id="matrix" className="relative py-24 sm:py-32 px-4 sm:px-6 md:px-12 bg-[#06080D] z-10 border-t border-white/5">
