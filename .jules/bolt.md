@@ -1,0 +1,3 @@
+## 2026-04-17 - React Global Re-render on Scroll Event Bottleneck
+**Learning:** Found a major performance bottleneck where a global scroll listener on the `App` component caused the entire page layout and child components to re-render constantly during scrolling. This occurred because the scroll state was tied to the root level.
+**Action:** Isolate high-frequency state updates like scrolling into smaller sub-components (e.g., `HeroSection`), combined with `requestAnimationFrame` for state throttling. Ensure global event listeners are localized to the components that actually use them to prevent cascading re-renders in large component trees.
