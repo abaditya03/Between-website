@@ -1,0 +1,3 @@
+## 2026-04-18 - Math.sqrt in High-Frequency Canvas Animations
+**Learning:** In the `index.html` file, `ParticleNetwork` was calling `Math.sqrt` inside an $O(N^2)$ loop inside `requestAnimationFrame`. This is a classic bottleneck that forces the CPU to calculate expensive square roots 4,900 times per frame (at 70 particles). Additionally, the inner loop initialized `j = i`, leading to self-comparisons.
+**Action:** Replaced `Math.sqrt()` with squared distance comparisons (`dx*dx + dy*dy`) and only computed the square root if a line actually needed to be drawn. Initialized inner loop to `j = i + 1`. This reduces iterations by ~50% and defers math operations significantly.
