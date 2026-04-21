@@ -1,0 +1,3 @@
+## 2024-04-21 - [Particle Network Loop Optimization]
+**Learning:** The Particle Network implementation in `index.html` was originally doing an expensive O(N^2) Math.sqrt calculation inside `requestAnimationFrame`. Even with only 70 particles, this translates to thousands of unnecessary computations per second.
+**Action:** When calculating interactions between particles in a network, initialize the inner loop at `j = i + 1` to skip self-comparisons and redundant reciprocal pair calculations. Always defer `Math.sqrt` by comparing squared distances first (`distSq < 14400`) rather than actual distances (`dist < 120`).
