@@ -1,0 +1,3 @@
+## 2025-02-18 - The Next.js Mirage
+**Learning:** The project claims to be a Next.js application in the `README.md`, but the primary file `index.html` is actually pure React JSX code masquerading as an HTML file. It lacks standard HTML wrappers and relies on in-browser Babel compilation (which is completely missing from the file). This fundamentally changes how it must be tested and analyzed.
+**Action:** Always inspect the actual file contents rather than blindly trusting the README. When testing or verifying this "HTML" file, use Babel or a simulated React environment instead of standard DOM parsers.
