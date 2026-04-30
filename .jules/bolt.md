@@ -1,0 +1,3 @@
+## 2026-04-30 - [Animation Loop Optimization]
+**Learning:** For rendering complex graphics or multiple items within the same `requestAnimationFrame` loop, it is often optimal to avoid executing expensive operations like `Math.sqrt()` continuously on every frame if there is an early exit condition. Comparing squared distances is a common and critical performance optimization technique for high-frequency interactive canvas applications.
+**Action:** Always check the distance measurement logic in high-frequency rendering or update loops; prioritize early exits (using squared distances, bounding boxes, or spatial partitioning) before doing exact calculations.
