@@ -85,11 +85,14 @@ const ParticleNetwork = memo(() => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach(p => { p.update(); p.draw(); });
       for (let i = 0; i < particles.length; i++) {
-        for (let j = i; j < particles.length; j++) {
+        // Bolt Optimization: initialized j = i + 1 to avoid self-comparisons and reciprocal pairs
+        for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
+          // Bolt Optimization: Compare squared distance first to avoid expensive Math.sqrt calls
+          const distSq = dx * dx + dy * dy;
+          if (distSq < 14400) { // 120 * 120
+            const dist = Math.sqrt(distSq);
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
@@ -101,8 +104,10 @@ const ParticleNetwork = memo(() => {
         if (mouse.x != null) {
           const dxMouse = particles[i].x - mouse.x;
           const dyMouse = particles[i].y - mouse.y;
-          const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
-          if (distMouse < 200) {
+          // Bolt Optimization: Compare squared distance first for mouse interactions
+          const distMouseSq = dxMouse * dxMouse + dyMouse * dyMouse;
+          if (distMouseSq < 40000) { // 200 * 200
+            const distMouse = Math.sqrt(distMouseSq);
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(mouse.x, mouse.y);
