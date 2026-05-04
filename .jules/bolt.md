@@ -1,0 +1,3 @@
+## 2026-05-04 - Particle System Distance Calculation Optimization
+**Learning:** Found a classic performance bottleneck in `index.html` where `Math.sqrt` was being calculated for every particle pair unconditionally in an O(n²) loop inside `requestAnimationFrame`, causing unnecessary computational overhead. Also, the inner loop checked all pairs instead of just distinct combinations.
+**Action:** Optimize distance calculations in high-frequency animation loops by comparing squared distances against squared thresholds first (`distSq < thresholdSq`) and only calling `Math.sqrt` when visually necessary. Initialize inner collision/interaction loops at `j = i + 1` to skip redundant `[i, j]` / `[j, i]` pairs and self-comparisons (`[i, i]`), reducing iterations by ~50%.
