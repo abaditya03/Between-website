@@ -1,0 +1,3 @@
+## 2024-05-05 - Distance Calculation Optimization in Canvas Animations
+**Learning:** In high-frequency animation loops like the ParticleNetwork in this codebase, calculating 2D distances with `Math.sqrt` on every pair of objects is a major, unnecessary bottleneck since the loop iterates ~2400 times per frame.
+**Action:** Always optimize proximity checks by comparing the squared distance (`dx*dx + dy*dy`) against a pre-calculated squared threshold (e.g. `14400` instead of `120`). Only call `Math.sqrt` if the threshold is met and the exact distance is required for rendering (e.g., opacity scaling).
