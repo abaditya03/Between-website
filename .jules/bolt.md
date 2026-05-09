@@ -1,0 +1,3 @@
+## 2024-05-09 - Particle Network Calculation Optimization
+**Learning:** High-frequency rendering loops (`requestAnimationFrame`) can become CPU bottlenecks due to expensive operations like `Math.sqrt` on every particle pair.  Comparing squared distances first filters out cold paths before evaluating expensive math. Self-comparisons and reciprocal pair checks (`j = i` vs `j = i + 1`) duplicate work needlessly. Adding `{ passive: true }` to frequent global listeners (`mousemove`, `resize`, `scroll`) prevents jank.
+**Action:** When implementing spatial or particle networks, always initialize the inner loop at `j = i + 1` and compare squared distance before calculating true distance.
