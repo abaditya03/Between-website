@@ -1,0 +1,3 @@
+## 2026-05-11 - O(N^2) Canvas Loop Distance Checks
+**Learning:** High-frequency canvas animation loops using unoptimized nested loops (O(n^2)) for particle proximity often compute `Math.sqrt` unnecessarily. Comparing exact distance when checking if within range is expensive. In this project's raw React/JSX `index.html`, I found the `ParticleNetwork` calculating `Math.sqrt` before checking distances and evaluating pairs twice.
+**Action:** When evaluating O(n^2) spatial interactions, always initialize the inner loop at `j = i + 1` to prevent self and duplicate comparisons. Always compare squared distances (`distSq < thresholdSq`) before applying the expensive `Math.sqrt` operation.
