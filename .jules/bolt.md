@@ -1,0 +1,2 @@
+## 2024-05-24 - Initial Setup\n**Learning:** Bolt journal initialized.\n**Action:** Keep logging critical learnings.
+## 2024-05-24 - Particle Network Distance Optimization\n**Learning:** In high-frequency loops like animation frames, optimizing O(N^2) particle interactions by avoiding reciprocal/self-comparisons and using squared distances significantly reduces CPU overhead, avoiding expensive `Math.sqrt` calls.\n**Action:** Apply squared distance checks and half-matrix iterations for all particle systems and high-frequency coordinate comparisons.
