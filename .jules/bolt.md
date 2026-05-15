@@ -1,0 +1,3 @@
+## 2024-05-24 - Canvas Particle Network Optimization
+**Learning:** Found a specific N^2 bottleneck in `ParticleNetwork` component. Distance checks between all N particles were doing redundant calculations (computing reciprocal pairs i,j and j,i, as well as self comparisons i,i). Furthermore, `Math.sqrt()` was being called on every pair unconditionally before filtering by distance.
+**Action:** When calculating interactions between entities in loops, always start the inner loop at `j = i + 1` to halve operations. Always compare squared distances (e.g. `distSq < maxDist * maxDist`) to defer expensive `Math.sqrt()` calls only to the elements that fall within range.
