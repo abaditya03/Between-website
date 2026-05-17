@@ -1,0 +1,3 @@
+## 2024-05-18 - HTML5 Canvas Distance Calculation
+**Learning:** In a heavily rendered HTML5 Canvas particle network inside React (running inside `requestAnimationFrame`), the repeated calculation of `Math.sqrt` inside an N^2 nested loop caused notable computation overhead.
+**Action:** By comparing the squared distances first (`dx*dx + dy*dy < threshold*threshold`), we can bypass `Math.sqrt` for non-interacting particles and start inner loop at `j = i + 1` to skip redundant calculations. I will consistently apply squared comparisons and avoid `Math.sqrt` unless interaction logic strictly requires it.
