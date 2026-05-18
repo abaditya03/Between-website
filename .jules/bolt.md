@@ -1,0 +1,3 @@
+## 2024-05-18 - Math.sqrt in High-Frequency Animation Loops
+**Learning:** Calling `Math.sqrt` inside heavily nested high-frequency loops (like animation frames looping over O(n^2) particle pairs) is computationally expensive and causes performance bottlenecks. Additionally, initializing inner loops at `j=i` instead of `j=i+1` results in self-comparisons and redundant reciprocal pair calculations.
+**Action:** Always avoid `Math.sqrt` by comparing squared distances first (`distSq < distance_threshold_squared`), calling `Math.sqrt` only when necessary for subsequent calculations. Initialize inner particle loops at `j = i + 1` to cut O(n^2) interactions in half.
