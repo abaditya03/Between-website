@@ -1,0 +1,3 @@
+## 2024-05-20 - ParticleNetwork Animation Optimization
+**Learning:** In a continuous canvas animation (using `requestAnimationFrame`), nesting a loop to compare every particle against every other particle (starting from `j=0`) results in redundant reciprocal checks and self-comparisons. Furthermore, performing `Math.sqrt` inside this high-frequency nested loop for every pair is extremely expensive and causes a performance bottleneck.
+**Action:** Optimize nested loops for pairwise interactions by initializing the inner loop at `j = i + 1`. Always compare squared distances first, invoking `Math.sqrt` only when necessary, to significantly reduce CPU cycles.
