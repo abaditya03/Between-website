@@ -1,0 +1,3 @@
+## 2024-05-21 - Canvas Particle Network Optimization
+**Learning:** High-frequency rendering loops (like Canvas particle animations) present a major optimization opportunity by minimizing expensive math operations. Specifically, calculating `Math.sqrt` inside nested loops ($O(n^2)$ complexity) for distance checking creates a massive CPU bottleneck.
+**Action:** Always refactor particle distance checks to compare squared distances (`dx*dx + dy*dy`) against the squared threshold first. Only calculate `Math.sqrt` if the actual distance value is strictly needed later in the rendering step (e.g., for opacity gradients). Also ensure inner loops start at `j = i + 1` to skip redundant self-comparisons.
