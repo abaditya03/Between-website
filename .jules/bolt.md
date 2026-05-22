@@ -1,0 +1,3 @@
+## 2024-06-25 - Particle Network Loop Optimization
+**Learning:** In high-frequency animation loops (like `requestAnimationFrame`), calculating Euclidean distances for all pairs of particles results in O(n^2) redundant operations. Additionally, the `Math.sqrt` function is computationally expensive when called thousands of times per frame.
+**Action:** Always start inner loops at `j = i + 1` to skip self-comparisons and reciprocal pairs (reducing operations by ~50%). Compare squared distances (`dx*dx + dy*dy`) against squared thresholds first, only invoking `Math.sqrt` if the threshold is met and the actual distance is needed for drawing.
