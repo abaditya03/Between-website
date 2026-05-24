@@ -1,0 +1,3 @@
+## 2024-05-24 - V8 Math.sqrt Optimization Behavior
+**Learning:** V8 engine heavily optimizes `Math.sqrt` and arithmetic operations when run continuously in a benchmark. Extracting it to check squared distances first doesn't yield significant speedup in a micro-benchmark context and may even be slightly slower due to assignment overhead, but skipping self-comparisons (`j = i + 1` instead of `j = i`) theoretically skips 70 operations per frame. Event listener `{ passive: true }` remains a valid browser-level optimization.
+**Action:** Avoid micro-optimizing `Math.sqrt` using squared comparisons if the logic complexity increases slightly, unless in an extreme hot path on older engines. Continue to apply algorithmic improvements like avoiding self-comparisons `j = i + 1`.
