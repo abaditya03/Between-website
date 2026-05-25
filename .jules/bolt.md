@@ -1,0 +1,3 @@
+## 2024-05-24 - Node.js Event Listener Option Creation Performance
+**Learning:** In a Node.js micro-benchmark, creating the object `{ passive: true }` in a tight loop is slower than a boolean primitive or undefined due to object allocation overhead. However, in the actual browser environment, passing `{ passive: true }` to `addEventListener` improves scrolling and interaction performance by not blocking the main thread for `preventDefault()` checks.
+**Action:** Be aware that simple micro-benchmarks in Node.js might show object creation overhead that does not reflect the real-world browser benefits of passive event listeners.
