@@ -1,0 +1,3 @@
+## 2024-05-24 - V8 Math.sqrt Optimization Insight
+**Learning:** Modern V8 engines heavily optimize `Math.sqrt`. Micro-optimizing by calculating and comparing squared distances first doesn't yield significant speedups in JS and may actually be marginally slower due to assignment overhead. Algorithmic optimizations, such as removing N redundant calculations per frame by changing a nested loop initialization from `j = i` to `j = i + 1`, offer much better and more reliable performance gains.
+**Action:** Prioritize algorithmic improvements (like reducing iterations and avoiding self-comparisons) over micro-optimizations like manually avoiding square roots unless specifically proven necessary by a benchmark in the target environment.
