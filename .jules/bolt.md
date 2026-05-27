@@ -1,0 +1,3 @@
+## 2024-05-18 - Avoid redundant distance calculation in ParticleNetwork
+**Learning:** In the ParticleNetwork component's `animate` function, the inner loop for drawing connecting lines starts at `j = i`. This means it checks the distance between a particle and itself (dx=0, dy=0, dist=0), which will always evaluate to `dist < 120` and execute the stroke operations (though it draws a line from a point to the same point, effectively drawing nothing but consuming CPU). This adds N redundant Math.sqrt calculations and canvas drawing operations per frame.
+**Action:** Always start inner loop at `j = i + 1` when calculating pairwise interactions where `j = i` case is invalid or unnecessary to avoid N redundant operations per frame.
