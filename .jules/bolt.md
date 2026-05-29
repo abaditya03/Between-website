@@ -1,0 +1,3 @@
+## 2024-05-18 - Optimize particle network self-comparisons
+**Learning:** The ParticleNetwork animation loop calculates interactions between particles using a nested loop (`for (let i = 0;...` and `for (let j = i;...`). While it avoids most redundant reciprocal pairs, initializing `j = i` performs an unnecessary calculation where a particle is compared to itself (distance will always be 0).
+**Action:** When calculating interactions between elements in a network where reciprocal pairs are skipped, initialize the inner loop at `j = i + 1` to skip self-comparisons, avoiding N redundant calculations per frame.
