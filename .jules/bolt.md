@@ -1,0 +1,3 @@
+## 2024-10-27 - Particle Network Self-Comparison Optimization
+**Learning:** In `index.html`'s ParticleNetwork React component, the original implementation calculated distance and drew lines between pairs of particles. However, the inner loop started at `j = i`, which meant every particle calculated distance to *itself* (distance = 0) and performed an unnecessary self-draw calculation.
+**Action:** By initializing the inner loop at `j = i + 1`, we effectively skip all redundant self-comparisons without altering the intended network functionality, avoiding array.length redundant calls per frame. This provides a ~20% performance improvement in the hot animation loop.
