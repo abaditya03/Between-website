@@ -1,0 +1,3 @@
+## 2026-04-10 - Canvas Particle Loop Optimization
+**Learning:** Found a specific O(n^2) performance anti-pattern in the canvas rendering loop where initializing the inner loop with `j = i` instead of `j = i + 1` caused `array.length` redundant distance calculations and, surprisingly, resulted in `dist = 0 < 120` being true, triggering a zero-length canvas draw call (moveTo(x,y) to lineTo(x,y)) for each particle on itself every frame.
+**Action:** When comparing arrays against themselves where reciprocal pairs are skipped, always initialize the inner loop to skip self-comparisons as well, preventing unnecessary operations and side effects.
