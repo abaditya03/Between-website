@@ -1,0 +1,3 @@
+## 2024-05-24 - Unnecessary Zero-Length Draw Calls
+**Learning:** Initializing a particle interaction loop with `j = i` instead of `j = i + 1` didn't just cause redundant N calculations—it surprisingly triggered N unnecessary zero-length canvas draw calls per frame. This happened because comparing a particle to itself yields `dist = 0`, which satisfies the `dist < 120` connection condition, leading to a silent `stroke()` on the same coordinate.
+**Action:** When calculating interactions, always check if the connection condition might inadvertently be satisfied by self-comparisons, and use `j = i + 1` to skip them if reciprocal pairs are already ignored.
