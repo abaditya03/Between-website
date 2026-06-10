@@ -1,0 +1,3 @@
+## 2024-05-24 - Particle Network Loop Optimization
+**Learning:** Found a specific performance anti-pattern in the ParticleNetwork component where initializing the inner loop at `j = i` instead of `j = i + 1` causes the loop to calculate distance to itself (which is 0). Because 0 < 120, it triggers an unnecessary zero-length canvas draw call for every particle in every single frame, causing significant redundant CPU load and canvas API overhead.
+**Action:** Always start pairwise comparison inner loops at `i + 1` to skip self-comparisons. Ensure this is applied to avoid unexpected `dist = 0` edge cases triggering zero-length canvas draw calls.
