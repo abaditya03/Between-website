@@ -1,0 +1,3 @@
+## 2024-05-24 - N Redundant Canvas Draw Calls per Frame
+**Learning:** In the `ParticleNetwork` component, the inner loop for drawing connecting lines initialized with `j = i`. Since `i` and `j` refer to the same particle, `dx` and `dy` are 0, resulting in `dist = 0`. Because `dist < 120` is true, a line to the exact same coordinates was being drawn `N` times per frame. Reciprocal pairs were skipped correctly (`j = i`), but the self-comparison was included.
+**Action:** When calculating interactions between particles in a network where reciprocal pairs are skipped, initialize the inner loop at `j = i + 1` instead of `j = i` to skip self-comparisons and prevent N redundant zero-length canvas draw calls.
