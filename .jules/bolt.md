@@ -1,0 +1,3 @@
+## 2024-05-18 - ParticleNetwork Redundant Self-Comparisons
+**Learning:** In the `ParticleNetwork` component, iterating the inner interaction loop from `j = i` causes redundant self-comparisons. Because distance between a particle and itself is 0, this always satisfies distance threshold checks (e.g., `dist < 120`), leading to continuous zero-length canvas draw calls (`moveTo(x,y)` to `lineTo(x,y)`) for every particle on every frame, which degrades rendering performance.
+**Action:** When calculating interactions between particles where reciprocal pairs are skipped, initialize the inner loop at `j = i + 1` to skip self-comparisons and prevent these redundant 0-length canvas draw calls.
