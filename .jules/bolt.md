@@ -1,0 +1,3 @@
+## 2024-05-24 - Avoiding zero-length draw calls in Particle Networks
+**Learning:** In canvas-based particle network animations, initializing the inner loop with `j = i` instead of `j = i + 1` evaluates self-comparisons where `dx = 0` and `dy = 0`. Since `dist = 0` satisfies the threshold (e.g., `dist < 120`), it triggers N redundant `ctx.beginPath()`, `ctx.moveTo(x, y)`, `ctx.lineTo(x, y)`, and `ctx.stroke()` calls every single frame, causing unnecessary canvas rendering overhead.
+**Action:** When calculating interactions between particles where reciprocal pairs are skipped, always initialize the inner loop at `j = i + 1` to skip self-comparisons entirely.
