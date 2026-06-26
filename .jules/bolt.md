@@ -1,0 +1,3 @@
+## 2025-02-18 - Nested Loop Redundant Draw Call
+**Learning:** In canvas network visualizations, initializing inner loops at `j = i` results in comparing each particle to itself. Since `dx=0`, `dy=0`, and `dist=0`, this incorrectly satisfies threshold checks (e.g., `dist < 120`) resulting in a zero-length line draw call for every single particle in the system, on every frame.
+**Action:** When calculating interactions between particles in a network, always initialize the inner loop at `j = i + 1` to skip self-comparisons. This avoids N redundant distance calculations and N useless zero-length canvas draw calls per frame.
