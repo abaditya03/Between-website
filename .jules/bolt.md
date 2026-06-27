@@ -1,0 +1,3 @@
+## 2024-06-27 - [Avoid zero-length canvas draw calls in interaction loops]
+**Learning:** [In particle interaction loops, if the inner loop starts at `j = i`, it will always calculate the distance between a particle and itself (which is 0). If the distance threshold is greater than 0, this will trigger a zero-length canvas `lineTo` draw call. This wastes cycles processing an unnecessary distance calculation and performing an invisible stroke call for every particle on every frame.]
+**Action:** [When comparing a particle array against itself, initialize the inner loop at `j = i + 1` instead of `j = i` to skip self-comparisons. This avoids N redundant calculations and 0-length draw calls per frame, resulting in significant speedup.]
