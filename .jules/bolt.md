@@ -1,0 +1,3 @@
+## 2025-06-15 - [Skip Particle Self-Comparisons]
+**Learning:** In canvas drawing loops iterating over all particle pairs, initializing the inner loop `j = i` checks identical particles, resulting in distance 0. If the distance threshold for drawing a connecting line is e.g. `< 120`, this passes. The code then calls `.moveTo(x, y)` and `.lineTo(x, y)` to the exact same coordinates, issuing an invisible, zero-length draw call.
+**Action:** When calculating interactions between pairs, initialize the inner loop at `j = i + 1` to skip self-comparisons. This avoids redundant calculations and prevents unexpected zero-length canvas draw calls when `dist = 0` satisfies distance thresholds.
