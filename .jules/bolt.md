@@ -1,0 +1,3 @@
+## 2024-05-24 - Canvas Particle Loop Optimization
+**Learning:** In particle network loop simulations, initializing the inner loop variable at `j = i` causes redundant self-comparisons which evaluate to a distance of zero. This triggers the distance threshold check (e.g. `dist < 120`) and creates an empty, zero-length canvas draw call per particle per frame.
+**Action:** When implementing particle interactions, always ensure the inner loop initializes at `j = i + 1` to skip self-comparisons. This simple change significantly reduces the total number of canvas operations (`stroke()`) called in high-frequency rendering loops.
