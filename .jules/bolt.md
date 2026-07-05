@@ -1,0 +1,7 @@
+## 2023-10-27 - [Avoided Self-Comparisons in Particle Physics Calculation]
+**Learning:** In the `ParticleNetwork` ambient background effect, the inner iteration loop (`j`) of the particle drawing step was initialized to `i` rather than `i + 1`. Since distance `dist` between an object and itself is exactly `0`, which is `< 120`, this caused redundant logic executions per frame. More significantly, it caused drawing a canvas line of zero length at the exact same point for every particle on the screen per frame.
+**Action:** Always verify `j = i + 1` is used in physics/distance calculation loops unless self-reference is specifically intended (or if `j` represents a different entity list entirely), to avoid heavy rendering overhead.
+
+## 2023-10-27 - [High-Frequency React/DOM Listeners and Passive Mode]
+**Learning:** Added `{ passive: true }` to `resize` and `mousemove` listeners on the global `window` object within React `useEffect` hooks. Because these listeners update simple variables and don't require calling `preventDefault`, passive listeners ensure the browser doesn't wait on the JS thread, significantly reducing jank in scroll and UI responsiveness.
+**Action:** When adding global UI listeners like `mousemove` or `scroll` in a frontend framework for purely tracking values, explicitly declare `{ passive: true }`. Furthermore, verify anonymous functions are not used for global event listeners so `removeEventListener` works reliably and does not cause a memory leak on unmount.
