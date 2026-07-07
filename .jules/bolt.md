@@ -1,0 +1,3 @@
+## 2026-07-07 - Prevent Zero-Length Draw Calls in Particle Network
+**Learning:** In the ambient particle network visualization (`ParticleNetwork` component), initiating the inner connection loop with `let j = i` rather than `j = i + 1` caused the particles to compare their positions with themselves. Because the distance was 0, it satisfied the `dist < 120` threshold and resulted in redundant zero-length canvas draw calls for every particle on every frame, which wastes computation and rendering time.
+**Action:** When implementing spatial connection loops across a homogeneous collection, always start the inner loop at `i + 1` to skip self-comparisons and avoid mathematically redundant operations (like 0-distance evaluation).
