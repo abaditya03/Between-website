@@ -1,0 +1,3 @@
+## 2025-02-14 - Redundant self-referential calculations in nested particle loops
+**Learning:** Initializing the inner loop at `j = i` instead of `j = i + 1` when calculating interactions between particles causes each particle to compare its distance to itself. When distance `dist = 0` satisfies the threshold condition (e.g. `dist < 120`), it triggers `N` redundant empty `ctx.moveTo()` and `ctx.lineTo()` coordinate pairs per frame.
+**Action:** When implementing mathematical interactions between sets of objects where reciprocal pairs are already skipped (`j = i`), initialize inner loops at `j = i + 1` to strictly skip self-comparisons. This saves N loop iterations and potentially redundant draw operations per frame.
