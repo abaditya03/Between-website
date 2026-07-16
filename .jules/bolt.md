@@ -1,0 +1,3 @@
+## 2026-07-16 - [Redundant Self-Comparisons in Nested Distance Loops]
+**Learning:** When calculating interactions (like distances or drawing lines) between all particles in a network loop, initializing the inner loop with `j = i` causes every particle to calculate its distance to itself. This guarantees a `dist` of 0. If the logic triggers a canvas draw when `dist` is below a threshold (e.g., `dist < 120`), it will execute an invisible, zero-length draw call for every single particle on every single frame, wasting significant CPU and context operations.
+**Action:** Always initialize inner pair-wise calculation loops with `j = i + 1` to skip self-comparisons and prevent `N` redundant calculations and canvas API calls per frame.
