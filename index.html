@@ -52,8 +52,11 @@ const ParticleNetwork = memo(() => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
-    window.addEventListener('resize', resize);
-    window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
+    const handleMouseMove = (e) => { mouse.x = e.clientX; mouse.y = e.clientY; };
+
+    // ⚡ Bolt: Use passive listeners to prevent main thread blocking
+    window.addEventListener('resize', resize, { passive: true });
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     resize();
 
     class Particle {
@@ -85,7 +88,8 @@ const ParticleNetwork = memo(() => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach(p => { p.update(); p.draw(); });
       for (let i = 0; i < particles.length; i++) {
-        for (let j = i; j < particles.length; j++) {
+        // ⚡ Bolt: Initialize inner loop at i+1 to skip redundant and self-comparisons
+        for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
@@ -118,6 +122,7 @@ const ParticleNetwork = memo(() => {
 
     return () => {
       window.removeEventListener('resize', resize);
+      window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);

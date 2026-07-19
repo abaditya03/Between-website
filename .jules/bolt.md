@@ -1,0 +1,3 @@
+## 2024-07-19 - [Particle Network Optimization]
+**Learning:** Found an O(N^2) loop in the particle network animation `index.html` where it iterated `j = i` resulting in self-comparison and redundant calculations. Furthermore, high frequency window event listeners 'resize' and 'mousemove' didn't use `{ passive: true }` and anonymous event listeners lacked proper cleanup.
+**Action:** When calculating interactions between particles in a network where reciprocal pairs are already skipped (`j = i`), initialize the inner loop at `j = i + 1` instead to skip self-comparisons. Use `{ passive: true }` for high-frequency window event listeners, and ensure proper cleanup by referencing named functions.
