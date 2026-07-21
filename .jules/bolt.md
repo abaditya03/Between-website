@@ -1,0 +1,3 @@
+## 2025-05-18 - Skipping Zero-Length Canvas Draw Calls in N^2 Networks
+**Learning:** In particle network animations where points are connected if they are closer than a certain distance, checking distance for self-comparisons (`j = i`) inherently passes the distance condition (distance is 0). This not only performs redundant distance calculations (70 times per frame here), but crucially executes a zero-length canvas draw operation (`moveTo` and `lineTo` to the same point), which is non-trivial performance overhead on the Canvas API.
+**Action:** Always start inner loops for undirected pair connections at `j = i + 1` to skip self-comparisons and prevent these invisible, zero-length draw calls from bottlenecking the main thread.
