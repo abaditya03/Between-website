@@ -1,0 +1,3 @@
+## 2024-05-24 - Canvas Zero-Length Draw Optimization
+**Learning:** In canvas-based particle network animations, setting the inner loop to start at `j = i` (instead of `j = i + 1`) performs redundant distance checks against the particle itself. Because the distance is 0, it inevitably falls under distance thresholds (e.g., `dist < 120`), forcing the canvas to issue zero-length draw calls (`moveTo(x,y)` to `lineTo(x,y)` with the same coordinates). This unnecessarily taxes the rendering engine with N zero-length strokes per frame.
+**Action:** Always start nested comparison loops that check interactions within the same array with `j = i + 1` to skip self-comparisons and prevent redundant zero-length canvas draw operations.
