@@ -1,0 +1,3 @@
+## 2026-05-18 - [Particle Canvas Optimization]
+**Learning:** [Avoid self-comparisons in canvas logic to save draw calls. Starting the inner loop at `j = i + 1` instead of `j = i` avoids self-comparisons, which evaluate `dist` as 0. In canvas scenarios where the visual connection is reciprocal, avoiding this zero-distance evaluation prevents an unnecessary `ctx.beginPath() / moveTo / lineTo` for `dist < 120`. Saving these redundant zero-length draw calls helps prevent stuttering.]
+**Action:** [When implementing dual loop distance calculations that compare a list to itself, always consider checking if the reciprocal pair logic is useful or required.]
