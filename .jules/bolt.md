@@ -1,0 +1,3 @@
+## 2024-07-25 - Isolate high-frequency state to prevent full app re-renders
+**Learning:** High-frequency state updates (like scroll events in `useScrollParallax`) placed at the top level of an unmemoized application component (e.g., `App`) force the entire component tree to re-render unnecessarily on every event, severely degrading performance.
+**Action:** When a piece of state only affects a specific part of the UI, isolate it by creating a specialized wrapper component (e.g., `HeroParallax`) for that section. This limits re-renders to only the components that depend on that state, significantly reducing execution cycles.
