@@ -1,0 +1,3 @@
+## 2024-07-26 - Particle Network Zero-Length Draw Calls
+**Learning:** When calculating interactions between particles in a network, starting the inner loop at `j = i` (instead of `j = i + 1`) causes the particle to be compared with itself. This results in a distance of 0, which satisfies distance threshold checks (e.g., `dist < 120`) and triggers a zero-length canvas draw call. In an animation loop running 60fps with 70 particles, this results in 4,200 redundant and invisible draw calls per second.
+**Action:** Always initialize inner loops comparing pairs in a set to `j = i + 1` to skip self-comparisons and avoid N redundant calculations per frame.
