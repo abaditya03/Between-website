@@ -1,0 +1,3 @@
+## 2024-07-27 - [Particle Network Loop Optimization]
+**Learning:** In canvas drawing logic for particle networks, initializing the inner distance calculation loop at `j = i` instead of `j = i + 1` results in the particle comparing distance to itself. This not only causes `N` redundant calculations per frame but also results in `dist = 0` which passes `< 120` threshold, leading to `N` unnecessary zero-length draw calls (`beginPath`, `moveTo`, `lineTo`, `stroke`) per frame on the canvas API.
+**Action:** Always verify inner loops comparing interacting elements skip self-comparisons using `j = i + 1` unless specifically required, to avoid invisible zero-length rendering calls that degrade performance.
