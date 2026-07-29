@@ -1,0 +1,3 @@
+## 2024-07-29 - Optimize nested loops for pairwise operations
+**Learning:** When calculating pairwise interactions in a particle system (e.g. distance checks for drawing connection lines), initializing the inner loop with `j = i` causes redundant zero-distance self-comparisons. This unnecessarily satisfies distance thresholds (`dist < 120`), executing canvas operations with a zero length resulting in silent performance drain without visual output.
+**Action:** When implementing O(n^2) pairwise iteration, always initialize the inner loop to `j = i + 1` to skip redundant `[i, i]` pairs and immediately halve the constant factor.
