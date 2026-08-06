@@ -1,0 +1,3 @@
+## 2026-08-06 - Unnecessary zero-length line drawings in canvas Particle System
+**Learning:** Found an inefficiency in the n-body calculation. The `ParticleNetwork` was initializing its inner pairing loop at `j = i` (comparing a particle to itself). The distance naturally was 0 which passed the `< 120` threshold limit causing it to do unnecessary `.beginPath`, `.moveTo`, `.lineTo`, `.stroke` operations. Since V8 engines are heavily optimized, skipping 0-length canvas lines creates a much more noticeable rendering speedup than saving a simple `Math.sqrt` operation.
+**Action:** Always start nested comparison loops with `j = i + 1` to skip redundant self comparisons unless necessary.
