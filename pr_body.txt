@@ -1,0 +1,4 @@
+💡 What: Modified inner loop from `j = i` to `j = i + 1` in ParticleNetwork.
+🎯 Why: To skip redundant self-comparisons which caused unnecessary 0-length canvas draw calls when `dist = 0`.
+📊 Impact: Avoids `array.length` redundant math operations and `array.length` unnecessary canvas zero-length line drawings per frame. Benchmark shows a substantial speedup for this specific loop in Node.
+🔬 Measurement: Observe reduction in ops and draw calls via Node benchmark simulation.
