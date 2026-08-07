@@ -1,0 +1,3 @@
+## 2025-02-12 - Particle Network Loop Optimization
+**Learning:** Found an O(N²) inner loop in `ParticleNetwork` (in `index.html`) that calculates particle interactions and draws lines. The loop condition `for (let j = i; j < particles.length; j++)` compares each particle against itself (`j = i`), distance=0, so it always passes the `dist < 120` threshold, and triggers a 0-length line draw call on the canvas `ctx.moveTo(p.x, p.y)` and `ctx.lineTo(p.x, p.y)`.
+**Action:** Next time looking at O(N²) nested loops calculating distances or interactions, check if the inner loop skips `j = i` (e.g., using `j = i + 1`) to prevent redundant zero-distance calculations and zero-length canvas draw calls.
