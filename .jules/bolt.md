@@ -1,0 +1,3 @@
+## 2024-10-24 - Canvas Loop Self-Comparison Anti-Pattern
+**Learning:** When calculating interactions between particles in a network, starting the inner loop at `j = i` instead of `j = i + 1` causes self-comparisons where distance is exactly 0. Because `0 < threshold` is true, this triggers N redundant, zero-length canvas draw calls (`moveTo` and `lineTo` the same coordinates) per frame, silently degrading rendering performance without visual bugs.
+**Action:** Always initialize inner loops for unique pairs at `j = i + 1` to skip self-comparisons and prevent unexpected zero-length draw calls when the self-distance of 0 satisfies threshold checks.
