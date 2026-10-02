@@ -1,0 +1,3 @@
+## 2024-10-02 - Particle Network Distance Calculation Bottleneck
+**Learning:** Found a major performance bottleneck in the canvas particle animation loop. The algorithm calculated `Math.sqrt` and distance for every pair combination including self-comparisons `(j=i)` which resulted in thousands of redundant expensive square root operations per frame.
+**Action:** Initialize nested loops with `j = i + 1` to skip self-comparisons and redundant reverse pairs. Always calculate squared distance `(dx*dx + dy*dy)` first, and only call `Math.sqrt` if the squared distance is within the squared threshold boundary.
