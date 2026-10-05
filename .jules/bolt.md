@@ -1,0 +1,3 @@
+## 2025-10-24 - Canvas Particle Animation Bottleneck
+**Learning:** In the `ParticleNetwork` canvas animation loop, the inner loop initialized `j = i`, resulting in self-comparisons and redundant zero-length line calculations. Additionally, `Math.sqrt` was called unconditionally for every particle pair, even when the distance was well outside the interaction threshold (120 for particles).
+**Action:** Initialize inner loop at `j = i + 1`. Use squared distance comparisons (`distSq < 14400` and `distMouseSq < 40000`) before calling `Math.sqrt` for drawing calculations to avoid expensive math operations for distant particles.
