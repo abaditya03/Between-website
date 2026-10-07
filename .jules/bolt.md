@@ -1,0 +1,3 @@
+## YYYY-MM-DD - [Optimizing nested loop in Canvas Animation]
+**Learning:** Found a common performance bottleneck in the particle network canvas animation in `index.html`. In the inner loop `for (let j = i; j < particles.length; j++)`, it's iterating from `j=i`. When `j==i`, it calculates distance between a particle and itself, taking `Math.sqrt()` where the distance is 0, making an unnecessary 0-length path draw because `dist < 120`. Furthermore, it uses `Math.sqrt` which is an expensive operation in an animation loop running every frame.
+**Action:** Initialize the inner loop at `j = i + 1` to skip self-comparison, and compare squared distances `distSq` to `120*120` to avoid `Math.sqrt` unless necessary for the strokeStyle alpha calculation.
