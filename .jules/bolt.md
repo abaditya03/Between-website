@@ -1,0 +1,3 @@
+## 2023-10-24 - Canvas Particle Animation Bottleneck
+**Learning:** The O(N^2) particle distance calculations in the canvas animation loop used `Math.sqrt()` unconditionally for every pair, even those too far to connect. Furthermore, the inner loop initialized `j = i`, causing self-comparisons which always resulted in a distance of 0, leading to unnecessary zero-length line draw calls.
+**Action:** When calculating distances in tight O(N^2) canvas loops, initialize inner loops at `j = i + 1` to avoid self-comparison, and use squared distance threshold checks (e.g., `distSq < maxDist * maxDist`) before invoking the expensive `Math.sqrt()` calculation.
