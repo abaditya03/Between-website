@@ -1,0 +1,3 @@
+## 2024-03-24 - Canvas Particle Optimization
+**Learning:** Found an O(N^2) loop in the canvas particle animation `ParticleNetwork` component. The loop initializes the inner loop at `j = i` which causes particles to compare distance with themselves. This results in unnecessary calculations and zero-distance lines being drawn over the same particle. Furthermore, `Math.sqrt()` is used for distance calculation *before* verifying if particles are close enough to each other.
+**Action:** When calculating distances in nested loops for drawing relationships, initialize the inner loop at `j = i + 1` to skip self-comparisons. Use squared distance calculations `dx * dx + dy * dy < thresholdSq` to avoid calling `Math.sqrt()` unnecessarily on every pair.
